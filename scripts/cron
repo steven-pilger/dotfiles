@@ -1,0 +1,1 @@
+*/5 * * * * source ~/scripts/sh/set_theme_env.sh > /dev/null 2>&1
