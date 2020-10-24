@@ -1,0 +1,15 @@
+# /Users/steven/.config/tmuxinator/com-stevenpilger.yml
+
+name: com-stevenpilger
+root: ~/Dropbox/3-DEV/3-Projects/com-stevenpilger
+windows:
+  - frontend:
+      root: ~/Dropbox/3-DEV/3-Projects/com-stevenpilger/frontend
+      layout: 72a8,213x59,0,0{136x59,0,0,27,76x59,137,0[76x29,137,0,28,76x29,137,30,30]}
+      panes:
+        - vim
+        - yarn serve
+        - cl
+  - shell:
+      panes:
+        -

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileZilla3 version="3.48.1" platform="mac">
+	<InsecureHosts>
+		<Host Port="21021">ftpexchange.helmholtz-muenchen.de</Host>
+	</InsecureHosts>
+</FileZilla3>

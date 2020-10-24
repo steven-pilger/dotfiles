@@ -1,0 +1,527 @@
+# You can edit this file by hand, but it's recommended not to do that.
+
+# Marks:
+'H
+	/Users/ptgdk/
+	..
+1588071139
+'b
+	/Users/ptgdk/bin/
+	..
+1588071139
+'h
+	/Users/ptgdk/
+	..
+1588071139
+
+# Bookmarks:
+
+# TUI:
+al
+q1
+v2
+ov
+m-1
+l2
+r2
+
+# Left window history (oldest to newest):
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/dialogs
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	util
+3
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/util
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	menubar_top.js
+12
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/util
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	landing_page
+2
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/landing_page
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	dialogs
+1
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/dialogs
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	dialog.js
+10
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/visualizations
+	helpers.js
+5
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/drf/Dermine_DRF
+	asgi.py
+4
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine
+	traefik
+20
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/traefik
+	make-certs.sh
+11
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine
+	traefik
+14
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/traefik
+	prod
+1
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/traefik/prod
+	..
+0
+d/Users/ptgdk/Documents/WordEmbedding
+	wordembedding
+6
+d/Users/ptgdk/Documents/WordEmbedding/wordembedding
+	.ipynb_checkpoints
+1
+d/Users/ptgdk/Documents/WordEmbedding
+	wordembedding
+6
+d/Users/ptgdk/Documents/WordEmbedding/wordembedding
+	fetch_and_parse.py
+4
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/traefik/prod
+	certs.toml
+5
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/traefik
+	prod
+1
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/traefik/prod
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/traefik
+	make-certs.sh
+13
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/visualizations
+	venn_diagremTemp.js
+9
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	dialogs
+1
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/dialogs
+	plot_dialog.js
+7
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/reducers
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src
+	actions
+2
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/actions
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src
+	reducers
+6
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/visualizations
+	venn_diagremTemp.js
+10
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	widget_sidebars
+7
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget_sidebars
+	widget_sidebar.js
+3
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	widget_sidebars
+7
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget_sidebars
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	widget
+6
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	widget_sidebars
+7
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget_sidebars
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	widget
+6
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget
+	widget_plot.js
+6
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget_sidebars
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	widget
+6
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	widget_sidebars
+7
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget_sidebars
+	index.js
+2
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	util
+3
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/util
+	authentication
+1
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/util/authentication
+	scopes.js
+5
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget_sidebars
+	box_sidebar.js
+1
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine
+	pouchdb_server
+15
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/pouchdb_server
+	src
+2
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/pouchdb_server/src
+	index.js
+2
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine
+	pouchdb_server
+18
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/pouchdb_server
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine
+	pouchdb_couch
+14
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/pouchdb_couch
+	conf
+1
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/pouchdb_couch/conf
+	docker.ini
+1
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/dialogs
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	dialog.js
+12
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine
+	pouchdb_couch
+14
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src
+	components
+4
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend
+	src
+6
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine
+	pouchdb_server
+15
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/pouchdb_server
+	src
+2
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/pouchdb_server/src
+	pouch__all_dbs__
+1
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/pouchdb_server/src/pouch__all_dbs__
+	000003.log
+1
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/pouchdb_server/src
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/pouchdb_server
+	config.json
+6
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/pouchdb_server/src
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/pouchdb_server
+	package.json
+8
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/pouchdb_server/src
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine
+	genesearch-api
+6
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/genesearch-api
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine
+	LICENSE
+22
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend
+	babel.config.js
+14
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/dialogs
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	widget
+6
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget
+	widget_type.js
+10
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/dialogs
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	widget
+6
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget
+	widget_add_function.js
+4
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/dialogs
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	widget
+6
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget
+	widget_type.js
+10
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	widget
+6
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget
+	widget_add_function.js
+4
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/dialogs
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	dialog.js
+12
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget
+	..
+0
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
+	util
+3
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/util
+	matcher_list_selection.js
+13
+d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/visualizations
+	network_plots.js
+7
+d
+
+# Right window history (oldest to newest):
+D/Users/ptgdk
+	..
+0
+D
+
+# Command line history (oldest to newest):
+:colorscheme snowwhite
+:colorscheme onedark
+:`
+:asdasd
+:asdsad
+:colorscheme 
+:wq
+:qa
+:set vifminfo
+:qq
+:asdads
+:q:qkj:q
+:q:q:q
+:touch authentication.js
+:touch theme.js
+:command df
+:com df
+:q
+:touch menubar_top.js
+:touch msal.js
+:touch configureStore.js
+:rena Components components
+:cp django.yml frontend.yml
+:command cp django.yml frontend.yml
+:touch add_dataset_dialog.js
+:touch 
+:touch SelectDbValueOrCreateNewAutocomplete.js
+:mkdir authentication
+:touch scopes.js
+:touch generate_username.py
+:mv generate_username.py custom_profile.py
+:touch add_new_dataset.js
+:move LICENSE.md LICENSE
+:move LICENSE
+:touch pull_request_template.md
+:move 
+:move ./get_access_token.js
+:move
+:touch queries.test.js
+:touch .babelrc
+:mkdir grafana
+:mkdir provisioning
+:mkdir dashboards
+:mkdir datasources
+:touch dashboard.yml
+:touch datasource.yml
+:touch docker-prometheus.json
+:mkdir prometheus
+:touch docker-cadvisor.json
+:touch user.js
+:touch icon_
+:touch table_icons.js
+:mkdir onboarding
+:touch first-visit.js
+:touch 1-default-tour.js
+:touch remove_common_string_prefix.js
+:touch check_dataset_matchers.js
+:touch mixins.py
+:touch merge_counts.R
+:touch merge_counts.snake
+:touch create_salmon_gentrome_and_decoys.snake
+:touch salmon_index.snake
+:touch salmon_quant_reads_PE.snake
+:touch setup.sh
+:touch get_example_data.sh
+:e get_example_reference_data.sh
+:cd
+:w
+:touch canvas_
+:e widget_drag.js
+:e widget_delete.js
+:touch setup.py
+:redraw
+:sort
+:rename
+:help
+:touch widget_sidebar.js
+:tocuh index.js
+:touch index.js
+:touch pouchdb_couch
+:mkdir pou
+:mkdir pouchdb_couch
+:touch docker.ini
+:touch local.ini
+:touch widget_type.js
+:touch widget_add_function.js
+:touch widget_add_dialog_steps.js
+:widget_size.js
+:touch widget_size.js
+:touch name_your_widget.js
+
+# Search history (oldest to newest):
+/READ
+/fro
+
+# Prompt history (oldest to newest):
+pmsalConfiguration.js
+pmsalConfiguration
+pmsal_configuration
+pselect_db_value_or_create_new_autocomplete
+pmsal
+pdocker-compose.staging.yml
+pM.js
+pexpression_overview.js
+p0023_auto_20200703_1413.py
+pdraw_rule_graph.sh
+prun_snakemake.sh
+pdry_run_snakemake.sh
+pget_example_data.sh
+psetup_new_analysis.sh
+phisat2_index.snake
+phisat2_align_PE.snake
+pget_GRCh38_Gencode34.py
+pget_GRCh38_Gencode34.sh
+phisat2_align_SE.snake
+psalmon_quant_reads_SE.snake
+pset_plot_grouping.js
+pwidget_drag_handle.js
+pwidget.js
+pmatcher_list.js
+pgroup_selection.js
+pget_abstracts.py
+pfetch_and_parse.py
+ptransform.py
+padd_contrast_to_dataset_dialog.js
+pconfig-overrides.js
+pcontrast_selection.js
+pmatcher_list_selection.js
+
+# Local filter history (oldest to newest):
+
+# Registers:
+""/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/util/contrast_selection.js
+
+# Directory stack (oldest to newest):
+
+# Trash content:
+t/Users/ptgdk/.local/share/vifm/Trash/000_authentification.js
+	/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/authentification.js
+t/Users/ptgdk/.local/share/vifm/Trash/000_authentification.css
+	/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/styles/authentification.css
+t/Users/ptgdk/.local/share/vifm/Trash/000_grafana.db
+	/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/grafana/grafana.db
+t/Users/ptgdk/.local/share/vifm/Trash/000_docker-prometheus.json
+	/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/grafana/provisioning/dashboards/docker-prometheus.json
+t/Users/ptgdk/.local/share/vifm/Trash/000_.DS_Store
+	/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/grafana/.DS_Store
+t/Users/ptgdk/.local/share/vifm/Trash/000_idea data model.md
+	/Users/ptgdk/vimwiki/idea data model.md
+t/Users/ptgdk/.local/share/vifm/Trash/000_user.js
+	/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/actions/user.js
+t/Users/ptgdk/.local/share/vifm/Trash/001_.DS_Store
+	/Users/ptgdk/Documents/0-Projects/Analysis-Pipelines/RNAseq/snakemake/.DS_Store
+t/Users/ptgdk/.local/share/vifm/Trash/000_fastqc_trim.snake
+	/Users/ptgdk/Documents/0-Projects/Analysis-Pipelines/RNAseq/snakemake/rules/fastqc_trim.snake
+t/Users/ptgdk/.local/share/vifm/Trash/002_.DS_Store
+	/Users/ptgdk/Documents/0-Projects/Analysis-Pipelines/RNAseq/snakemake/analyses/0-Template/.DS_Store
+t/Users/ptgdk/.local/share/vifm/Trash/000_snakemake.sh
+	/Users/ptgdk/Documents/0-Projects/Analysis-Pipelines/RNAseq/snakemake/analyses/0-Template/snakemake.sh
+t/Users/ptgdk/.local/share/vifm/Trash/000_setup_symlinks.sh
+	/Users/ptgdk/Documents/0-Projects/Analysis-Pipelines/RNAseq/snakemake/setup_symlinks.sh
+t/Users/ptgdk/.local/share/vifm/Trash/000_trim_cutadapt.snake
+	/Users/ptgdk/Documents/0-Projects/Analysis-Pipelines/RNAseq/snakemake/rules/trim_cutadapt.snake
+t/Users/ptgdk/.local/share/vifm/Trash/000_trim_cutadapt_SE.snake
+	/Users/ptgdk/Documents/0-Projects/Analysis-Pipelines/RNAseq/snakemake/rules/trim_cutadapt_SE.snake
+t/Users/ptgdk/.local/share/vifm/Trash/000_get_GRCh38_Gencode34.py
+	/Users/ptgdk/Documents/0-Projects/Analysis-Pipelines/RNAseq/snakemake/scripts/reference_data/get_GRCh38_Gencode34.py
+t/Users/ptgdk/.local/share/vifm/Trash/000_widget_plot.js
+	/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/widget_plot.js
+t/Users/ptgdk/.local/share/vifm/Trash/000_widget_menu.js
+	/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/widget_menu.js
+t/Users/ptgdk/.local/share/vifm/Trash/000_ci-test-coverage.yml
+	/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/.azuredevops/traefik/ci-test-coverage.yml
+t/Users/ptgdk/.local/share/vifm/Trash/002_ci-test-coverage.yml
+	/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/.azuredevops/drf/ci-test-coverage.yml
+t/Users/ptgdk/.local/share/vifm/Trash/000_widget_sidebar.js
+	/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/widget/widget_sidebar.js
+t/Users/ptgdk/.local/share/vifm/Trash/000_pouchdb_couch
+	/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/pouchdb_couch
+
+# State:
+f
+i1
+[.0
+[F
+F
+I1
+].1
+]F
+s0

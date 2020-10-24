@@ -1,0 +1,10 @@
+{
+    "npm.binPath": "npm",
+    "python.formatting.provider": "black",
+    "python.formatting.blackPath": "/usr/local/bin/black",
+    "python.linting.enabled": true,
+    "python.linting.flake8Path": "/usr/local/bin/flake8",
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
+    "diagnostic.displayByAle": true
+}

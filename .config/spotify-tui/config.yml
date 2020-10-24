@@ -1,0 +1,13 @@
+theme:
+  active: Cyan
+  banner: Black
+  error_border: Red
+  error_text: Red
+  hint: Yellow
+  hovered: Magenta
+  inactive: "100, 100, 100"
+  playbar_background: Black
+  playbar_progress: Cyan
+  playbar_text: Black
+  selected: Cyan
+  text: "0, 0, 0"
