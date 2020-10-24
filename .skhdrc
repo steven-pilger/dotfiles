@@ -1,0 +1,32 @@
+# GENERAL
+# cmd + ctrl - r : skhd --reload
+# cmd + ctrl - z : fkill amethyst && open /Applications/Amethyst.app
+
+
+# APPLICATIONS
+cmd + ctrl - return : open /Applications/kitty.app
+cmd + ctrl - r : open /Applications/RStudio.app
+cmd + ctrl - v : open /Applications/Visual\ Studio\ Code.app
+cmd + ctrl - f : open /Applications/Firefox.app
+cmd + ctrl - s : open /Applications/Fork.app
+cmd + ctrl - d : open /Applications/Dash.app
+cmd + ctrl - t : open /Applications/Things3.app
+cmd + ctrl - o : open /Applications/Microsoft\ Outlook.app
+cmd + ctrl - p : open /Applications/Preview.app
+
+# YABAI
+# focus window
+cmd + ctrl + alt - h : yabai -m window --focus west
+cmd + ctrl + alt - j : yabai -m window --focus south
+cmd + ctrl + alt - k : yabai -m window --focus north
+cmd + ctrl + alt - l : yabai -m window --focus east
+
+# swap window
+shift + cmd + ctrl + alt - h : yabai -m window --move west
+shift + cmd + ctrl + alt - j : yabai -m window --move south
+shift + cmd + ctrl + alt - k : yabai -m window --move north
+shift + cmd + ctrl + alt - l : yabai -m window --move east
+
+# float / unfloat window and center on screen
+ctrl - t : yabai -m window --toggle float;\
+          yabai -m window --grid 6:6:1:1:4:4
