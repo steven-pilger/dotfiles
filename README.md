@@ -8,6 +8,7 @@
 4. Install dependencies:
     - Oh-my-fish: https://github.com/oh-my-fish/oh-my-fish#installation
     - Starship: https://starship.rs/guide/#%F0%9F%9A%80-installation
+    - fasd: https://github.com/clvv/fasd#install
     - Vim-Plugged: https://github.com/junegunn/vim-plug#unix-linux
     - Vifm: https://vifm.info/ (brew install vifm)
     - Tmux Plugin-Manager: https://github.com/tmux-plugins/tpm#installation
