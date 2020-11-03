@@ -13,4 +13,9 @@
     - Tmux Plugin-Manager: https://github.com/tmux-plugins/tpm#installation
     - Skhd: https://github.com/koekeishiya/skhd#install
     - Yabai: https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)
+    - Miniconda: https://conda.io/projects/conda/en/latest/user-guide/install/macos.html
+    - Pyenv:
+      - https://github.com/pyenv/pyenv#installation
+      - https://github.com/pyenv/pyenv-installer#install
+    - Poetry: https://python-poetry.org/docs/#osx-linux-bashonwindows-install-instructions
 
