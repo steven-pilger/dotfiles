@@ -5,3 +5,10 @@
     1. `echo $(which fish) | sudo tee -a /etc/shells`
     2. `chsh -s $(which fish)`
 3. Run this command: `curl -Lks https://gist.github.com/steven-pilger/7254f04fb3eac67d321a6b9453cf0d29 | /bin/bash`
+4. Install dependencies:
+    - Oh-my-fish: https://github.com/oh-my-fish/oh-my-fish#installation
+    - Vim-Plugged: https://github.com/junegunn/vim-plug#unix-linux
+    - Tmux Plugin-Manager: https://github.com/tmux-plugins/tpm#installation
+    - Skhd: https://github.com/koekeishiya/skhd#install
+    - Yabai: https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)
+    - Vifm: https://vifm.info/ (brew install vifm)
