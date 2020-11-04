@@ -15,7 +15,7 @@ set PATH $HOME/.pyenv/bin/ $PATH
 fish_vi_key_bindings
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 
-set DEVICE (uname --nodename)
+set DEVICE (uname -n)
 if test $DEVICE = 'srv01312'
     eval /compute/miniconda3/condabin/conda "shell.fish" "hook" $argv | source
 else
