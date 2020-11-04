@@ -10,9 +10,9 @@
 	..
 1588071139
 'h
-	/Users/ptgdk/
+	/home/ptgdk/
 	..
-1588071139
+1604400771
 
 # Bookmarks:
 
@@ -26,30 +26,6 @@ l2
 r2
 
 # Left window history (oldest to newest):
-d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/dialogs
-	..
-0
-d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
-	util
-3
-d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/util
-	..
-0
-d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
-	menubar_top.js
-12
-d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/util
-	..
-0
-d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
-	landing_page
-2
-d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/landing_page
-	..
-0
-d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components
-	dialogs
-1
 d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/dialogs
 	..
 0
@@ -326,11 +302,38 @@ d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/util
 d/Users/ptgdk/Documents/Dermine-DevAzure/Dermine/frontend/src/components/visualizations
 	network_plots.js
 7
+d/home/ptgdk
+	.config
+6
+d/home/ptgdk/.config/fish
+	..
+0
+d/home/ptgdk/.config
+	fish
+8
+d/home/ptgdk
+	.pyenv
+15
+d/home/ptgdk/.pyenv
+	src
+8
+d/home/ptgdk/.pyenv/src
+	configure
+3
+d/home/ptgdk/.pyenv
+	.vimrc
+13
+d/home/ptgdk
+	.pki
+14
 d
 
 # Right window history (oldest to newest):
 D/Users/ptgdk
 	..
+0
+D/
+	
 0
 D
 
