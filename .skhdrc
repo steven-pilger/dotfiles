@@ -16,16 +16,23 @@ cmd + ctrl - p : open /Applications/Preview.app
 
 # YABAI
 # focus window
-cmd + ctrl + alt - h : yabai -m window --focus west
-cmd + ctrl + alt - j : yabai -m window --focus south
-cmd + ctrl + alt - k : yabai -m window --focus north
-cmd + ctrl + alt - l : yabai -m window --focus east
+# cmd + ctrl + alt - h : yabai -m window --focus west
+# cmd + ctrl + alt - j : yabai -m window --focus south
+# cmd + ctrl + alt - k : yabai -m window --focus north
+# cmd + ctrl + alt - l : yabai -m window --focus east
 
 # swap window
-shift + cmd + ctrl + alt - h : yabai -m window --move west
-shift + cmd + ctrl + alt - j : yabai -m window --move south
-shift + cmd + ctrl + alt - k : yabai -m window --move north
-shift + cmd + ctrl + alt - l : yabai -m window --move east
+# shift + cmd + ctrl + alt - h : yabai -m window --move west
+# shift + cmd + ctrl + alt - j : yabai -m window --move south
+# shift + cmd + ctrl + alt - k : yabai -m window --move north
+# shift + cmd + ctrl + alt - l : yabai -m window --move east
+
+
+# window size
+# cmd + ctrl - h : yabai -m window --resize left:-20:0
+# cmd + ctrl - k : yabai -m window --resize top:0:-20
+# cmd + ctrl - j : yabai -m window --resize bottom:0:-20
+# cmd + ctrl - l : yabai -m window --resize top:0:20
 
 # float / unfloat window and center on screen
 ctrl - t : yabai -m window --toggle float;\

@@ -34,7 +34,6 @@
     "save_files_before_build": true,
     "font_size_points": 14,
     "default_project_location": "/Volumes/srv01312_dsfs_1001_q1000c$/rnaseq-example-data",
-    "pdf_previewer": "rstudio",
     "restore_source_documents": false,
     "document_author": "Steven Pilger - PTGDK",
     "wrap_tab_navigation": false,
@@ -42,5 +41,10 @@
     "reuse_sessions_for_project_links": true,
     "terminal_path": "/Users/steven",
     "jobs_tab_visibility": "shown",
-    "posix_terminal_shell": "bash"
+    "posix_terminal_shell": "bash",
+    "source_with_echo": true,
+    "initial_working_directory": "~",
+    "shiny_viewer_type": "browser",
+    "shiny_background_jobs": true,
+    "restore_last_project": false
 }

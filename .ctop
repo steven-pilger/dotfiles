@@ -1,0 +1,12 @@
+[options]
+  columns = "status,name,cpu,mem,net"
+  filterStr = "dermine"
+  shell = "sh"
+  sortField = "state"
+
+[toggles]
+  allContainers = true
+  enableHeader = false
+  fullRowCursor = true
+  scaleCpu = false
+  sortReversed = false

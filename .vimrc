@@ -205,6 +205,9 @@ Plug 'lervag/vimtex' "A modern vim plugin for editing LaTeX files.
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 
+" R
+Plug 'vim-pandoc/vim-rmarkdown'
+
 " Spelling
 Plug 'rhysd/vim-grammarous'
 
@@ -216,6 +219,8 @@ Plug 'ap/vim-css-color' " A very fast, multi-syntax context-sensitive color name
 
 " Completion / Snippets
 Plug 'dense-analysis/ale' "Asynchronous linting/fixing for Vim and Language Server Protocol (LSP) integration
+Plug 'SirVer/ultisnips' "snippet engine
+Plug 'honza/vim-snippets' "snippet plugin
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8
 " Plug 'deoplete-plugins/deoplete-jedi'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -233,11 +238,6 @@ Plug 'edkolev/tmuxline.vim' "Simple tmux statusline generator with support for p
 Plug 'chriskempson/base16-vim'
 Plug 'ryanoasis/vim-devicons' "Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
 Plug 'luochen1990/rainbow' "Rainbow Parentheses Improved, shorter code, no level limit, smooth and fast, powerful configuration.
-
-"" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-space>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 call plug#end()
 
@@ -274,6 +274,20 @@ map <c-c> :bd<CR>
 " ========================================
 " PLUGIN CONFIGURATION
 " ========================================
+"
+"
+
+" UltiSnips
+"" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
+let g:UltiSnipsExpandTrigger="<c-space>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+
+"
+"
+"
 " YouCompleteMe
 " let g:ycm_python_binary_path = 'python'
 " let g:ycm_autoclose_preview_window_after_completion=1
@@ -284,8 +298,8 @@ map <c-c> :bd<CR>
 
 " Deoplete
 " Python nvim environment
-" let g:python_host_prog = '~/.pyenv/versions/2.7.16/bin/python'
-" let g:python3_host_prog = '~/.pyenv/versions/3.7.0/bin/python'
+let g:python_host_prog = '~/.pyenv/versions/2.7.16/bin/python'
+let g:python3_host_prog = '~/.pyenv/versions/3.7.0/bin/python'
 "
 " let g:deoplete#enable_at_startup = 1
 " " remap keys for up/down in list to j/k when popup is visible
