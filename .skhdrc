@@ -26,7 +26,9 @@ cmd + ctrl - p : open /Applications/Preview.app
 # shift + cmd + ctrl + alt - j : yabai -m window --move south
 # shift + cmd + ctrl + alt - k : yabai -m window --move north
 # shift + cmd + ctrl + alt - l : yabai -m window --move east
-
+ctrl + cmd - z: yabai -m window --swap mouse
+ctrl + cmd - 0x21 : "$HOME"/scripts/yabai_cycle_counterclockwise.sh
+ctrl + cmd - 0x1E : "$HOME"/scripts/yabai_cycle_clockwise.sh
 
 # window size
 # cmd + ctrl - h : yabai -m window --resize left:-20:0
@@ -36,4 +38,7 @@ cmd + ctrl - p : open /Applications/Preview.app
 
 # float / unfloat window and center on screen
 ctrl - t : yabai -m window --toggle float;\
-          yabai -m window --grid 6:6:1:1:4:4
+          yabai -m window --grid 6:6:2:1:2:4
+
+# Equalize size of windows
+ctrl - space : yabai -m space --balance

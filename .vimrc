@@ -478,7 +478,8 @@ let g:airline#extensions#tagbar#enabled = 1
 " let g:SpellCheck_DefineQuickfixMappings = 0
 
 " fzf
-nnoremap <silent> <leader>f :ProjectFiles<CR>
+nnoremap <silent> <leader>f :GitFiles<CR>
+nnoremap <silent> <leader>F :ProjectFiles<CR>
 nnoremap <silent> <leader><space> :Buffers<CR>
 nnoremap <silent> <leader>A :Windows<CR>
 nnoremap <silent> <leader>l :BLines<CR>
