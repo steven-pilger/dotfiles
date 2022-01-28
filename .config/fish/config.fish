@@ -9,7 +9,7 @@ source ~/.environ
 # reset PATH
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-set PATH $HOME/.poetry/bin/ $PATH
+set PATH $HOME/.local/bin/ $PATH
 set PATH $HOME/.pyenv/bin/ $PATH
 
 # VI Mode
