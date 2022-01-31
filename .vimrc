@@ -218,18 +218,14 @@ Plug 'ap/vim-css-color' " A very fast, multi-syntax context-sensitive color name
 " Javascript/Typescript
 
 " Completion / Snippets
-Plug 'dense-analysis/ale' "Asynchronous linting/fixing for Vim and Language Server Protocol (LSP) integration
 Plug 'SirVer/ultisnips' "snippet engine
 Plug 'honza/vim-snippets' "snippet plugin
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Dark powered asynchronous completion framework for neovim/Vim8
-" Plug 'deoplete-plugins/deoplete-jedi'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'onsails/lspkind-nvim'
 
@@ -242,7 +238,6 @@ Plug 'vim-airline/vim-airline' "lean & mean status/tabline for vim that's light 
 Plug 'vim-airline/vim-airline-themes' " A collection of themes for vim-airline
 Plug 'dawikur/base16-vim-airline-themes'
 Plug 'edkolev/tmuxline.vim' "Simple tmux statusline generator with support for powerline symbols and statusline / airline / lightline integration
-" Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'chriskempson/base16-vim'
 Plug 'ryanoasis/vim-devicons' "Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
 Plug 'luochen1990/rainbow' "Rainbow Parentheses Improved, shorter code, no level limit, smooth and fast, powerful configuration.
@@ -288,56 +283,13 @@ map <c-c> :bd<CR>
 " UltiSnips
 "" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
-let g:UltiSnipsExpandTrigger="<c-space>"
+" let g:UltiSnipsExpandTrigger="<c-space>"
 "let g:UltiSnipsJumpForwardTrigger="<c-b>"
 "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-
-"
-"
-"
-" YouCompleteMe
-" let g:ycm_python_binary_path = 'python'
-" let g:ycm_autoclose_preview_window_after_completion=1
-" if !exists('g:ycm_semantic_triggers')
-"     let g:ycm_semantic_triggers = {}
-"   endif
-" let g:ycm_semantic_triggers.tex = ['@']
-
-" Deoplete
 " Python nvim environment
 let g:python_host_prog = '~/.pyenv/versions/2.7.16/bin/python'
 let g:python3_host_prog = '~/.pyenv/versions/3.8.12/bin/python'
-"
-" let g:deoplete#enable_at_startup = 1
-" " remap keys for up/down in list to j/k when popup is visible
-" inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-" inoremap <expr> <tab> pumvisible() ? "\<C-n>" : "\<tab>"
-" inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-"
-" call deoplete#custom#option({
-"\ 'max_list': 30,
-"\ 'auto_complete_delay': 200,
-"\ })
-"
-" call deoplete#custom#var('around', {
-"\ 'range_above': 20,
-"\ 'range_below': 20,
-"\ 'mark_above': '[↑]',
-"\ 'mark_below': '[↓]',
-"\ 'mark_changes': '[*]',
-"\})
-"
-" " call deoplete#custom#var('omni', 'input_patterns', {
-" "  \ 'pandoc': '@',
-" "\})
-
-
-" Indent Guides
-"let g:indent_guides_enable_on_vim_startup = 1
-"set ts=2 sw=4 et
-"let g:indent_guides_start_level=2
-"let g:indent_guides_guide_size=1
 
 " pandoc
 let g:pandoc#filetypes#handled = ["markdown"]
@@ -350,83 +302,19 @@ let g:pandoc#command#autoexec_command = "Pandoc latex --biblatex"
 " latex
 let g:tex_flavor = 'latex'
 
-
-" ALE
-let g:ale_linter_aliases = {'vue': ['vue', 'javascript']}
-let g:ale_linters = {
-\   'javascriptreact': ['eslint'],
-\   'vue': ['eslint', 'vls'],
-\   'typescript': ['tsserver', 'tslint'],
-\   'python': ['flake8'],
-\   'markdown': ['writegood']
-\}
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['prettier', 'eslint'],
-\   'javascriptreact': ['prettier', 'eslint'],
-\   'vue': ['prettier', 'eslint'],
-\   'html': ['prettier'],
-\   'scss': ['prettier'],
-\   'css': ['prettier'],
-\   'ts': ['prettier'],
-\   'python': ['black'],
-\}
-
-" Do not fix these files and projects
-let g:ale_pattern_options = {
-\ '\.min\.js$': {'ale_linters': [], 'ale_fixers': []},
-\ '\.min\.css$': {'ale_linters': [], 'ale_fixers': []},
-\ 'protwis': {'ale_linters': [], 'ale_fixers': []},
-\}
-
-let b:ale_python_flake8_executable = '/usr/local/bin/flake8'
-let b:ale_python_flake8_use_global = 1
-let g:ale_python_flake8_options='
-  \--ignore E203, E266, E501, W503 \
-  \--max-line-length 88 \
-  \--max-complexity 18 \
-  \--select B,C,E,F,W,T4,B9'
-
-let g:ale_enabled = 1
-let g:ale_sign_column_always = 1
-let g:ale_set_signs=1
-let g:ale_set_highlights=1
-" Combine ALE with CoC
-let g:ale_disable_lsp = 1
-
-" when to lint
-let g:ale_lint_on_text_changed = 'always'
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_enter = 1
-let g:ale_lint_on_save = 1
-let g:ale_fix_on_save = 0
-let g:ale_lint_delay=10000
-
-" let g:ale_open_list = 1
-let g:airline#extensions#ale#enabled = 0
-
-" Typescript
-" Disable Syntax/Semantics checks from this plugin (ALE is used for that)
-let g:nvim_typescript#diagnostics_enable = 0
-
-" Syntastic
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-"
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_eslint_exe = 'yarn lint'
+" let b:ale_python_flake8_executable = '/usr/local/bin/flake8'
+" let b:ale_python_flake8_use_global = 1
+" let g:ale_python_flake8_options='
+"  \--ignore E203, E266, E501, W503 \
+"  \--max-line-length 88 \
+"  \--max-complexity 18 \
+"  \--select B,C,E,F,W,T4,B9'
 
 " GitGutter
 set updatetime=100
 
 " Vifm
 map <c-b> :EditVifm<CR>
-
 
 " Tmuxline
 let g:tmuxline_powerline_separators = 0
@@ -441,19 +329,6 @@ let g:tmuxline_theme = 'airline'
 
 "Rainbow Parentheses
 let g:rainbow_active = 1
-
-"Emmet
-"let g:user_emmet_install_global = 0
-"autocmd FileType html,css EmmetInstall
-
-"Easy Motion
-"Turn on case insensitive feature
-let g:EasyMotion_smartcase = 1
-map <Leader> <Plug>(easymotion-prefix)
-
-" JK motions: Line motions
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
 
 " Airline / Tmuxline
 let g:airline_section_c = ''
@@ -478,12 +353,6 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
 let g:airline#extensions#tagbar#enabled = 1
-
-" CTRL-P
-"let g:ctrlp_working_path_mode = 'ra'
-
-" Spell Check
-" let g:SpellCheck_DefineQuickfixMappings = 0
 
 " fzf
 nnoremap <silent> <leader>f :ProjectFiles<CR>
@@ -548,47 +417,7 @@ endfunction
 command! ProjectFiles execute 'Files' s:find_git_root()
 
 " DetectIndent
-" autocmd BufReadPost * :DetectIndent
-
-" Goyo
-function! s:goyo_enter()
-  " if executable('tmux') && strlen($TMUX)
-  "   silent !tmux set status off
-  "   silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  " endif
-  " set noshowmode
-  " set noshowcmd
-  " set scrolloff=999
-  set nonumber norelativenumber
-endfunction
-
-function! s:goyo_leave()
-  " if executable('tmux') && strlen($TMUX)
-  "   silent !tmux set status on
-  "   silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-  " endif
-  " set showmode
-  " set showcmd
-  " set scrolloff=5
-  set number relativenumber
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-
-" Ctags
-" let g:autotagTagsFile="tags"
-" let g:autotagDisabled=0
-
-" unlet b:easytags_auto_highlight
-" let g:easytags_async = 1
-" set tags=./tags;
-" let g:easytags_dynamic_files = 1
-" let g:easytags_resolve_links = 1
-
-" TagBar
-nmap <F8> :TagbarToggle<CR>
+autocmd BufReadPost * :DetectIndent
 
 " VimWiki
 let g:vimwiki_list = [{'path': '~/vimwiki/',
@@ -606,8 +435,6 @@ nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> ge    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <leader>F    <cmd>lua vim.lsp.buf.formatting()<CR>
-nnoremap <silent> <leader>rn    <cmd>lua vim.lsp.buf.rename()<CR>
-
 
 set completeopt=longest,menuone
 
@@ -630,34 +457,34 @@ lua <<EOF
       end,
     },
     mapping = {
-          ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
+      ['<C-p>'] = cmp.mapping.select_prev_item(),
+      ['<C-n>'] = cmp.mapping.select_next_item(),
+      ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.close(),
+      ['<CR>'] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
+      },
+      ['<Tab>'] = function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        -- elseif luasnip.expand_or_jumpable() then
+          -- luasnip.expand_or_jump()
+        else
+          fallback()
+        end
     end,
-    ['<S-Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end,
+      ['<S-Tab>'] = function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        -- elseif luasnip.jumpable(-1) then
+          -- luasnip.jump(-1)
+        else
+          fallback()
+        end
+      end,
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
@@ -685,8 +512,10 @@ lua <<EOF
 
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   require('lspconfig')['pylsp'].setup {
-    capabilities = capabilities
+    capabilities = capabilities,
+    settings = {
+        formatCommand = {"black"}
+    }
   }
 EOF
