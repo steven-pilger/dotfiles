@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # getting current theme and defaul working directory
 lwd=$pwd

@@ -251,7 +251,7 @@ syntax on
 " onehalf dark/light
 "Change theme depending on the time of day
 let hr = (strftime('%H'))
-if hr >= 19
+if hr >= 17
 let g:airline_theme='base16_onedark'
 colorscheme base16-onedark
 elseif hr >= 8
@@ -417,7 +417,7 @@ endfunction
 command! ProjectFiles execute 'Files' s:find_git_root()
 
 " DetectIndent
-autocmd BufReadPost * :DetectIndent
+" autocmd BufReadPost * :DetectIndent
 
 " VimWiki
 let g:vimwiki_list = [{'path': '~/vimwiki/',

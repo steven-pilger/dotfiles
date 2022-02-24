@@ -32,3 +32,7 @@ status is-login; and pyenv init --path | source
 # pyenv init - | source
 # Starship
 starship init fish | source
+
+
+# dx autocomplete
+eval register-python-argcomplete --shell fish dx | source
