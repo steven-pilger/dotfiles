@@ -20,7 +20,8 @@
             "Plots",
             "Packages",
             "Help",
-            "Viewer"
+            "Viewer",
+            "Presentations"
         ],
         "hiddenTabSet": [],
         "console_left_on_top": false,
@@ -50,5 +51,7 @@
     "shiny_background_jobs": true,
     "restore_last_project": false,
     "new_proj_git_init": true,
-    "new_proj_use_renv": true
+    "new_proj_use_renv": true,
+    "editor_theme": "One Light {rsthemes}",
+    "show_terminal_tab": false
 }
