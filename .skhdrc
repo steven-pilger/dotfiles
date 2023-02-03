@@ -5,7 +5,7 @@
 
 # APPLICATIONS
 cmd + ctrl - return : open /Applications/kitty.app
-cmd + ctrl - r : open /Applications/RStudio.app
+# cmd + ctrl - r : open /Applications/RStudio.app
 cmd + ctrl - v : open /Applications/Visual\ Studio\ Code.app
 cmd + ctrl - f : open /Applications/Firefox.app
 cmd + ctrl - s : open /Applications/Fork.app
@@ -42,3 +42,5 @@ ctrl - t : yabai -m window --toggle float;\
 
 # Equalize size of windows
 ctrl - space : yabai -m space --balance
+
+ctrl - y : launchctl unload -w ~/Library/LaunchAgents/com.startup.plist && sleep 1 && launchctl load -w ~/Library/LaunchAgents/com.startup.plist 

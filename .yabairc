@@ -37,14 +37,16 @@ yabai -m config window_gap                   15
 yabai -m rule --add app=Finder manage=off
 yabai -m rule --add app=Preview manage=off
 yabai -m rule --add app='System Preferences' manage=off
-yabai -m rule --add label='1Password7' app="^1Password 7$"manage=off
+yabai -m rule --add app="1Password" manage=off
 yabai -m rule --add app=Bitwarden manage=off
+yabai -m rule --add app=Joplin manage=off
 yabai -m rule --add app=Dash manage=off
 yabai -m rule --add app=Tot manage=off
 yabai -m rule --add app=kitty display=2
 yabai -m rule --add app=RStudio display=2
 yabai -m rule --add app=Firefox display=1
 yabai -m rule --add app=Outlook display=1
+yabai -m rule --add app=Outlook display=1 title="^\d+ Reminders?" manage=off sticky=on
 yabai -m rule --add app='Microsoft Teams' display=2
 yabai -m rule --add app=Fork display=2
 yabai -m rule --add label="App Store" app="^App Store$" manage=off
@@ -55,5 +57,6 @@ yabai -m rule --add label="Dictionary" app="^Dictionary$" manage=off
 yabai -m rule --add label="Software Update" title="Software Update" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 yabai -m rule --add app="Cisco AnyConnect Secure Mobility Client" manage=off
+yabai -m rule --add app="^Digital Colou?r Meter$" sticky=on
 
 echo "yabai configuration loaded.."

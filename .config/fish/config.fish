@@ -14,6 +14,7 @@ set PATH $HOME/.pyenv/bin/ $PATH
 
 # VI Mode
 fish_vi_key_bindings
+bind \cx\ce edit_command_buffer
 
 # set DEVICE (uname -n)
 # if test $DEVICE = 'srv01312'
@@ -33,6 +34,13 @@ status is-login; and pyenv init --path | source
 # Starship
 starship init fish | source
 
+export NVM_DIR=$HOME/.nvm
 
 # dx autocomplete
 eval register-python-argcomplete --shell fish dx | source
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+eval /usr/local/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<
+
