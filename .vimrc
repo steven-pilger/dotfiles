@@ -166,6 +166,8 @@ nnoremap <silent> <leader>/ :noh<CR> " remove search highlightin until next sear
 "elseif has('python3')
 "endif
 
+let g:loaded_perl_provider = 0
+
 
 " ========================================
 " VIM PLUGIN CONFIGURATION
@@ -511,7 +513,8 @@ lua <<EOF
   })
 
   -- Setup lspconfig.
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   require('lspconfig')['pylsp'].setup {
     capabilities = capabilities,
     settings = {

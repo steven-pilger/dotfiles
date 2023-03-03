@@ -5,42 +5,38 @@ export LANG=en_US.UTF-8
 # ALIASES / ENV
 source ~/.environ
 
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # DEFAULT EXPORTS
 # reset PATH
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 set PATH $HOME/.local/bin/ $PATH
-set PATH $HOME/.pyenv/bin/ $PATH
 
 # VI Mode
 fish_vi_key_bindings
 bind \cx\ce edit_command_buffer
 
-# set DEVICE (uname -n)
-# if test $DEVICE = 'srv01312'
-#     eval /compute/miniconda3/condabin/conda "shell.fish" "hook" $argv | source
-# else if test $DEVICE = 'mbpro.wombat'
-#     eval /usr/local/bin/conda "shell.fish" "hook" $argv | source
-# else if test $DEVICE = 'PTGDK-MBPro'
-#     # eval (minikube docker-env)
-#     eval $HOME/Documents/conda/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-# else
-#     eval $HOME/Documents/conda/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-# end
-# 
 # Pyenv
-status is-login; and pyenv init --path | source
-# pyenv init - | source
+set -Ux PYENV_ROOT $HOME/.pyenv
+set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+pyenv init - | source
+# status is-login; and pyenv init --path | source
+
 # Starship
 starship init fish | source
 
 export NVM_DIR=$HOME/.nvm
 
-# dx autocomplete
-eval register-python-argcomplete --shell fish dx | source
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/steven/google-cloud-sdk/path.fish.inc' ]; . '/Users/steven/google-cloud-sdk/path.fish.inc'; end
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-eval /usr/local/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" $argv | source
+if test -f /opt/homebrew/Caskroom/miniforge/base/bin/conda
+    eval /opt/homebrew/Caskroom/miniforge/base/bin/conda "shell.fish" "hook" $argv | source
+end
 # <<< conda initialize <<<
 
