@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "neovim": "^4.8.0"
+    "fkill": "^8.1.0",
+    "fkill-cli": "^7.1.0",
+    "neovim": "^4.8.0",
+    "standard-version": "^9.5.0"
   }
 }

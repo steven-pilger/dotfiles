@@ -1,10 +1,10 @@
 {
     "panes": {
         "quadrants": [
-            "TabSet2",
-            "Console",
             "TabSet1",
-            "Source"
+            "TabSet2",
+            "Source",
+            "Console"
         ],
         "tabSet1": [
             "Environment",
@@ -25,7 +25,7 @@
         ],
         "hiddenTabSet": [],
         "console_left_on_top": false,
-        "console_right_on_top": true,
+        "console_right_on_top": false,
         "additional_source_columns": 0
     },
     "editor_keybindings": "vim",
@@ -34,7 +34,7 @@
     "strip_trailing_whitespace": true,
     "soft_wrap_r_files": true,
     "save_files_before_build": true,
-    "font_size_points": 11,
+    "font_size_points": 12,
     "default_project_location": "~/Documents/dermine",
     "restore_source_documents": false,
     "document_author": "Steven Pilger - PTGDK",
@@ -49,7 +49,6 @@
     "shiny_viewer_type": "pane",
     "shiny_background_jobs": true,
     "restore_last_project": false,
-    "editor_theme": "One Light {rsthemes}",
     "show_terminal_tab": false,
     "cran_mirror": {
         "name": "Custom",
@@ -59,5 +58,6 @@
         "country": "",
         "changed": false
     },
-    "new_proj_use_renv": true
+    "text_rendering": "geometricPrecision",
+    "load_workspace": false
 }

@@ -27,8 +27,9 @@ pyenv init - | source
 # Starship
 starship init fish | source
 
+# NVM
 export NVM_DIR=$HOME/.nvm
-
+# load_nvm > /dev/stderr
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/steven/google-cloud-sdk/path.fish.inc' ]; . '/Users/steven/google-cloud-sdk/path.fish.inc'; end
