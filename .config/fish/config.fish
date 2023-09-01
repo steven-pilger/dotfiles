@@ -6,7 +6,7 @@ export LANG=en_US.UTF-8
 source ~/.environ
 
 # Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # DEFAULT EXPORTS
 # reset PATH
