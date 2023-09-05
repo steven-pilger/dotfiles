@@ -11,6 +11,8 @@ $all\
 $symbol
 """
 
+[rlang]
+detect_files = []
 
 [python]
 symbol = '👾 '
