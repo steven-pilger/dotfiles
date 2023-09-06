@@ -220,6 +220,9 @@ Plug 'ap/vim-css-color' " A very fast, multi-syntax context-sensitive color name
 " Javascript/Typescript
 
 " Completion / Snippets
+Plug 'williamboman/mason.nvim' "lsp management
+Plug 'williamboman/mason-lspconfig.nvim'
+
 Plug 'SirVer/ultisnips' "snippet engine
 Plug 'honza/vim-snippets' "snippet plugin
 Plug 'neovim/nvim-lspconfig'
@@ -230,6 +233,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'onsails/lspkind-nvim'
+
 
 " Syntax
 Plug 'sheerun/vim-polyglot'
@@ -521,4 +525,22 @@ lua <<EOF
         formatCommand = {"black"}
     }
   }
+  require('lspconfig')['tsserver'].setup{}
+
+  require('mason').setup({
+      ui = {
+          icons = {
+              package_installed = "✓",
+              package_pending = "➜",
+              package_uninstalled = "✗"
+          }
+      }
+  })
+
+  require('mason-lspconfig').setup({
+      -- A list of servers to automatically install if they're not already installed
+      ensure_installed = { 'pylsp', 'tsserver' },
+  })
 EOF
+
+
