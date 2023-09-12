@@ -190,7 +190,10 @@ Plug 'andymass/matchup.vim' "highlight, navigate, and operate on sets of matchin
 Plug 'tpope/vim-sleuth' "detect indentation
 Plug 'tpope/vim-fugitive'  "A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-dispatch'  "A Git wrapper so awesome, it should be illegal
-Plug 'jreybert/vimagit' "Ease your git workflow within vim.
+Plug 'NeogitOrg/neogit'
+Plug 'folke/trouble.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-lua/plenary.nvim'
 Plug 'vimwiki/vimwiki' "A Personal Wiki For Vim
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'vifm/vifm.vim' "Vi based file-manager
@@ -234,6 +237,12 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'onsails/lspkind-nvim'
 
+" Debug
+Plug 'mfussenegger/nvim-dap'
+Plug 'mfussenegger/nvim-dap-python'
+Plug 'jay-babu/mason-nvim-dap.nvim'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Syntax
 Plug 'sheerun/vim-polyglot'
@@ -247,6 +256,7 @@ Plug 'edkolev/tmuxline.vim' "Simple tmux statusline generator with support for p
 Plug 'chriskempson/base16-vim'
 Plug 'ryanoasis/vim-devicons' "Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
 Plug 'luochen1990/rainbow' "Rainbow Parentheses Improved, shorter code, no level limit, smooth and fast, powerful configuration.
+Plug 'folke/zen-mode.nvim'
 
 call plug#end()
 
@@ -440,11 +450,17 @@ nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> ge    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <leader>F    <cmd>lua vim.lsp.buf.formatting()<CR>
+nnoremap <silent> <leader>F    <cmd>lua vim.lsp.buf.formatexpr()<CR>
 
 set completeopt=longest,menuone
 
 lua <<EOF
+
+  local neogit = require('neogit')
+  neogit.setup {
+    kind = "split"
+  }
+
   -- Setup nvim-cmp.
   local cmp = require'cmp'
   local lspkind = require('lspkind')
@@ -522,9 +538,18 @@ lua <<EOF
   require('lspconfig')['pylsp'].setup {
     capabilities = capabilities,
     settings = {
-        formatCommand = {"black"}
+      pylsp = {
+        formatCommand = {"black"},
+        configurationSources = { "flake8", "pylint"},
+        plugins = {
+          ruff = {
+            enabled = false,
+            extendSelect = { "I" },
+          },
+        }
+        }
+      }
     }
-  }
   require('lspconfig')['tsserver'].setup{}
 
   require('mason').setup({
@@ -541,6 +566,43 @@ lua <<EOF
       -- A list of servers to automatically install if they're not already installed
       ensure_installed = { 'pylsp', 'tsserver' },
   })
+  require("mason-nvim-dap").setup({
+      ensure_installed = { "python", "js", "firefox"}
+  })
+
+  local dap, dapui = require("dap"), require("dapui")
+  require('dap-python').setup('$HOME/.pyenv/versions/3.8.12/bin/python')
+  require("dapui").setup()
+  require('dap.ext.vscode').load_launchjs()
+
+  vim.keymap.set('n', '<leader>d', function()
+      return require('dapui').toggle({reset=true})
+  end)
+  vim.keymap.set('n', '<C-w>z', function()
+      return require('zen-mode').toggle({window={width=0.95}})
+  end)
+
+  dap.listeners.after.event_initialized["dapui_config"] = function()
+    dapui.open({reset=true})
+  end
+  dap.listeners.before.event_terminated["dapui_config"] = function()
+    dapui.close()
+  end
+  dap.listeners.before.event_exited["dapui_config"] = function()
+    dapui.close()
+  end
+
+  vim.fn.sign_define('DapBreakpoint',{ text ='🟥', texthl ='', linehl ='', numhl =''})
+  vim.fn.sign_define('DapStopped',{ text ='▶️', texthl ='', linehl ='', numhl =''})
+
+  vim.keymap.set('n', '<F5>', require 'dap'.continue)
+  vim.keymap.set('n', '<F6>', require 'dap'.restart)
+  vim.keymap.set('n', '<F10>', require 'dap'.step_over)
+  vim.keymap.set('n', '<F11>', require 'dap'.step_into)
+  vim.keymap.set('n', '<F12>', require 'dap'.step_out)
+  vim.keymap.set('n', '<leader>b', require 'dap'.toggle_breakpoint)
+
+
 EOF
 
 
