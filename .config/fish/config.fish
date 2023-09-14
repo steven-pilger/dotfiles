@@ -11,7 +11,7 @@ source ~/.environ
 # Homebrew
 switch (uname)
 case Darwin
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  eval (/opt/homebrew/bin/brew shellenv)
 end
 
 # DEFAULT EXPORTS
