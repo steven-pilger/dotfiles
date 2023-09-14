@@ -9,7 +9,10 @@ export LANG=en_US.UTF-8
 source ~/.environ
 
 # Homebrew
-# eval "$(/opt/homebrew/bin/brew shellenv)"
+switch (uname)
+case Darwin
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+end
 
 # DEFAULT EXPORTS
 # reset PATH

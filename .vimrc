@@ -194,7 +194,7 @@ Plug 'NeogitOrg/neogit'
 Plug 'folke/trouble.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'vimwiki/vimwiki' "A Personal Wiki For Vim
+" Plug 'vimwiki/vimwiki' "A Personal Wiki For Vim
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'vifm/vifm.vim' "Vi based file-manager
 
@@ -245,8 +245,8 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Syntax
-Plug 'sheerun/vim-polyglot'
-Plug 'ivan-krukov/vim-snakemake'
+" Plug 'sheerun/vim-polyglot'
+" Plug 'ivan-krukov/vim-snakemake'
 
 " Style
 Plug 'vim-airline/vim-airline' "lean & mean status/tabline for vim that's light as air
@@ -436,12 +436,12 @@ command! ProjectFiles execute 'Files' s:find_git_root()
 " autocmd BufReadPost * :DetectIndent
 
 " VimWiki
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
-
-nmap <leader>wn <Plug>VimwikiNextLink
-nmap <leader>wp <Plug>VimwikiPrevLink
-let g:vimwiki_table_mappings=0
+" let g:vimwiki_list = [{'path': '~/vimwiki/',
+"                      \ 'syntax': 'markdown', 'ext': '.md'}]
+" 
+" nmap <leader>wn <Plug>VimwikiNextLink
+" nmap <leader>wp <Plug>VimwikiPrevLink
+" let g:vimwiki_table_mappings=0
 
 " LSP Completion
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
