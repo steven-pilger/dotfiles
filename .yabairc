@@ -34,8 +34,10 @@ yabai -m config window_gap                   15
 
 
 # rules
+yabai -m rule --add label="Finder" app="^Finder$" manage=off
 yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
+yabai -m rule --add label="System Settings" app="^System Settings$" title=".*" manage=off
 yabai -m rule --add label="System Preferences" app="^System Preferences$" title=".*" manage=off
 yabai -m rule --add label="App Store" app="^App Store$" manage=off
 yabai -m rule --add label="Activity Monitor" app="^Activity Monitor$" manage=off
@@ -66,6 +68,10 @@ yabai -m rule --add app=Calendar space=2 manage=off
 yabai -m rule --add app=Gemini manage=off
 yabai -m rule --add app=Outlook 
 yabai -m rule --add app=Outlook title="^\d+ Reminders?" manage=off sticky=on
+
+# This matches outlook windows which titles have an email address in the end
+yabai -m rule --add app=Outlook title="stpi@novozymes.com$" manage=off sticky=off
+
 yabai -m rule --add app='Microsoft Teams'
 yabai -m rule --add app=Fork space=1 manage=off
 yabai -m rule --add app="Cisco AnyConnect Secure Mobility Client" manage=off
