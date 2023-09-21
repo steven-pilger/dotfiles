@@ -178,8 +178,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Utilities
 Plug 'tpope/vim-eunuch' "eunuch.vim: Helpers for UNIX
 Plug 'mhinz/vim-signify'  " Show a diff using Vim its sign column.
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 Plug 'easymotion/vim-easymotion' "Vim motions on speed!
 Plug 'xolox/vim-misc' "Miscellaneous auto-load Vim scripts
 Plug 'junegunn/goyo.vim' "Distraction-free writing in Vim.
@@ -371,14 +372,14 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 let g:airline#extensions#tagbar#enabled = 1
 
 " fzf
-nnoremap <silent> <leader>f :ProjectFiles<CR>
-nnoremap <silent> <leader><space> :Buffers<CR>
-nnoremap <silent> <leader>A :Windows<CR>
-nnoremap <silent> <leader>l :BLines<CR>
+nnoremap <silent> <leader>f :FzfLua files<CR>
+nnoremap <silent> <leader><space> :FzfLua buffers<CR>
+" nnoremap <silent> <leader>A :Windows<CR>
+nnoremap <silent> <leader>l :FzfLua blines<CR>
 " nnoremap <silent> <leader>o :BTags<CR>
-" nnoremap <silent> <leader>t :Tags<CR>
-nnoremap <silent> <leader>? :History<CR>
-nnoremap <silent> <leader>s :Rg<CR>
+nnoremap <silent> <leader>t :FzfLua tags<CR>
+" nnoremap <silent> <leader>? :History<CR>
+nnoremap <silent> <leader>s :FzfLua live_grep<CR>
 
 let g:fzf_tags_command = 'ctags -Ra -f tags .'
 set grepprg=rg\ --vimgrep
