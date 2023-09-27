@@ -24,7 +24,7 @@ set cursorline
 "autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 " Make it obvious where 88 characters is
-set textwidth=88
+set textwidth=120
 set colorcolumn=+1
 
 " Open new split panes to right and bottom, which feels more natural
@@ -451,7 +451,7 @@ nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> ge    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <leader>F    <cmd>lua vim.lsp.buf.formatexpr()<CR>
+nnoremap <silent> <leader>F    <cmd>lua vim.lsp.buf.format()<CR>
 
 set completeopt=longest,menuone
 
@@ -540,14 +540,13 @@ lua <<EOF
     capabilities = capabilities,
     settings = {
       pylsp = {
-        formatCommand = {"black"},
-        configurationSources = { "flake8", "pylint"},
         plugins = {
           ruff = {
-            enabled = false,
+            enabled = true,
+            lineLength = '120',
             extendSelect = { "I" },
-          },
-        }
+          }
+          }
         }
       }
     }
@@ -567,6 +566,26 @@ lua <<EOF
       -- A list of servers to automatically install if they're not already installed
       ensure_installed = { 'pylsp', 'tsserver' },
   })
+
+  local function mason_package_path(package)
+      local path = vim.fn.resolve(vim.fn.stdpath("data") .. "/mason/packages/" .. package)
+      return path
+  end
+
+  -- depends on package manager / language
+  -- this command might need to be changed such that the pip from the venv is used
+  -- e.g. ./venv/bin/pip
+  local command = "pip"
+  local args = { "install", "pylsp-rope", "python-lsp-ruff", "pyls-isort", "python-lsp-black" }
+
+  require("plenary.job")
+    :new({
+        command = command,
+        args = args,
+        cwd = mason_package_path("python-lsp-server"),
+    })
+    :start()
+
   require("mason-nvim-dap").setup({
       ensure_installed = { "python", "js", "firefox"}
   })
