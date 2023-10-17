@@ -18,7 +18,6 @@ end
 # reset PATH
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-set PATH $HOME/.local/bin/ $PATH
 
 # VI Mode
 fish_vi_key_bindings
