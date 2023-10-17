@@ -227,7 +227,6 @@ Plug 'ap/vim-css-color' " A very fast, multi-syntax context-sensitive color name
 " Completion / Snippets
 Plug 'williamboman/mason.nvim' "lsp management
 Plug 'williamboman/mason-lspconfig.nvim'
-
 Plug 'SirVer/ultisnips' "snippet engine
 Plug 'honza/vim-snippets' "snippet plugin
 Plug 'neovim/nvim-lspconfig'
@@ -238,6 +237,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'onsails/lspkind-nvim'
+Plug 'huggingface/llm.nvim'
 
 " Debug
 Plug 'mfussenegger/nvim-dap'
@@ -565,7 +565,7 @@ lua <<EOF
 
   require('mason-lspconfig').setup({
       -- A list of servers to automatically install if they're not already installed
-      ensure_installed = { 'pylsp', 'tsserver' },
+      ensure_installed = { 'pylsp', 'tsserver'},
   })
 
   local function mason_package_path(package)
@@ -623,6 +623,14 @@ lua <<EOF
   vim.keymap.set('n', '<F12>', require 'dap'.step_out)
   vim.keymap.set('n', '<leader>b', require 'dap'.toggle_breakpoint)
 
+  -- require('llm').setup({
+  --   api_token = nil,
+  --   model = "http://localhost:11434/api/generate",
+  --   tokenizer = nil,
+  --   query_params = {
+  --     model = 'codellama'
+  --   }
+  -- })
 
 EOF
 

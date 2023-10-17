@@ -7,6 +7,7 @@ export LANG=en_US.UTF-8
 
 # ALIASES / ENV
 source ~/.environ
+set -x TERM xterm-256color
 
 # Homebrew
 switch (uname)
