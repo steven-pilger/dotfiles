@@ -245,6 +245,7 @@ Plug 'mfussenegger/nvim-dap-python'
 Plug 'jay-babu/mason-nvim-dap.nvim'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-context'
 
 " Syntax
 " Plug 'sheerun/vim-polyglot'
