@@ -2,8 +2,8 @@
 set -g fish_greeting
 
 # LOCALE
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+set LC_ALL en_US.UTF-8
+set LANG en_US.UTF-8
 
 # ALIASES / ENV
 source ~/.environ
@@ -17,33 +17,28 @@ end
 
 # DEFAULT EXPORTS
 # reset PATH
-export VISUAL=nvim
-export EDITOR="$VISUAL"
+set VISUAL nvim
+set EDITOR $VISUAL
 
 # VI Mode
-fish_vi_key_bindings
+set -g fish_key_bindings fish_vi_key_bindings
+bind -M insert \cc kill-whole-line repaint
 bind \cx\ce edit_command_buffer
 
 # Pyenv
 set -Ux PYENV_ROOT $HOME/.pyenv
 set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
-pyenv init - | source
-# status is-login; and pyenv init --path | source
+
+if command -q pyenv
+  pyenv init - | source
+end
 
 # Starship
-starship init fish | source
+if command -q starship
+  starship init fish --print-full-init | source
+end
 
 # NVM
-export NVM_DIR=$HOME/.nvm
+set NVM_DIR $HOME/.nvm
 # load_nvm > /dev/stderr
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/steven/google-cloud-sdk/path.fish.inc' ]; . '/Users/steven/google-cloud-sdk/path.fish.inc'; end
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if test -f /opt/homebrew/Caskroom/miniforge/base/bin/conda
-    eval /opt/homebrew/Caskroom/miniforge/base/bin/conda "shell.fish" "hook" $argv | source
-end
-# <<< conda initialize <<<
 

@@ -182,7 +182,6 @@ Plug 'tpope/vim-eunuch' "eunuch.vim: Helpers for UNIX
 " Plug 'junegunn/fzf'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
-Plug 'easymotion/vim-easymotion' "Vim motions on speed!
 Plug 'xolox/vim-misc' "Miscellaneous auto-load Vim scripts
 Plug 'junegunn/goyo.vim' "Distraction-free writing in Vim.
 Plug 'christoomey/vim-tmux-navigator' "Seamless navigation between tmux panes and vim splits
@@ -231,6 +230,7 @@ Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'SirVer/ultisnips' "snippet engine
 Plug 'honza/vim-snippets' "snippet plugin
 Plug 'neovim/nvim-lspconfig'
+Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -239,6 +239,14 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'onsails/lspkind-nvim'
 Plug 'huggingface/llm.nvim'
+
+" FZF / Code Actions / etc
+Plug 'aznhe21/actions-preview.nvim'
+" Plug 'MunifTanjim/nui.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'neanias/telescope-lines.nvim'
+Plug 'stevearc/aerial.nvim'
 
 " Debug
 Plug 'mfussenegger/nvim-dap'
@@ -373,15 +381,17 @@ nnoremap <silent>    <leader>9 <Cmd>BufferGoto 9<CR>
 nnoremap <silent>    <leader>0 <Cmd>BufferLast<CR>
 
 
-" fzf
-nnoremap <silent> <leader>f :FzfLua files<CR>
-nnoremap <silent> <leader><space> :FzfLua buffers<CR>
+" fzf + telescope
+ noremap <silent> <leader>f :Telescop find_files<CR>
+nnoremap <silent> <leader><space> :Telescope buffers<CR>
 " nnoremap <silent> <leader>A :Windows<CR>
-nnoremap <silent> <leader>l :FzfLua blines<CR>
+nnoremap <silent> <leader>l :Telescope lines<CR>
 " nnoremap <silent> <leader>o :BTags<CR>
-nnoremap <silent> <leader>t :FzfLua tags<CR>
+" nnoremap <silent> <leader>t :FzfLua tags<Ct>
 " nnoremap <silent> <leader>? :History<CR>
-nnoremap <silent> <leader>s :FzfLua live_grep<CR>
+nnoremap <silent> <leader>s :Telescope live_grep<CR>
+" nnoremap <silent> <leader>F     :Telescope lsp_document_symbols symbols=function,class<CR>
+nnoremap <silent> <leader>A     :AerialToggle left<CR>
 
 let g:fzf_tags_command = 'ctags -Ra -f tags .'
 set grepprg=rg\ --vimgrep
@@ -435,37 +445,96 @@ endfunction
 
 command! ProjectFiles execute 'Files' s:find_git_root()
 
-" DetectIndent
-" autocmd BufReadPost * :DetectIndent
-
-" VimWiki
-" let g:vimwiki_list = [{'path': '~/vimwiki/',
-"                      \ 'syntax': 'markdown', 'ext': '.md'}]
-" 
-" nmap <leader>wn <Plug>VimwikiNextLink
-" nmap <leader>wp <Plug>VimwikiPrevLink
-" let g:vimwiki_table_mappings=0
-
 " LSP Completion
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> ge    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+nnoremap <silent> ge    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+" nnoremap <silent> gca    <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <leader>F    <cmd>lua vim.lsp.buf.format()<CR>
+
 
 set completeopt=longest,menuone
 
 lua <<EOF
 
+  -- Key Bindings
+  vim.keymap.set("", "<leader>ng", "<cmd>:Neogit<CR>", { remap = false })
+  vim.keymap.set({'n', 'v'}, '<leader>F', vim.lsp.buf.format)
+  vim.keymap.set({'n', 'v'}, 'gca', require("actions-preview").code_actions)
+
+  require('aerial').setup {
+    layout = {
+      max_width = {60, 0.33},
+      width = 30,
+      min_width = 30
+    }
+  }
+  require('telescope').setup {
+    extensions = {
+      fzf = {
+        fuzzy = true,                    -- false will only do exact matching
+        override_generic_sorter = true,  -- override the generic sorter
+        override_file_sorter = true,     -- override the file sorter
+        case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                         -- the default case_mode is "smart_case"
+      }
+    },
+    defaults = {
+      sorting_strategy = "ascending",
+      layout_strategy = "vertical",
+      layout_config = {
+        width = 0.8,
+        height = 0.6,
+        mirror = true,
+        prompt_position = "top",
+        preview_cutoff = 20,
+        preview_height = function(_, _, max_lines)
+          return max_lines - 15
+        end,
+      }
+   }
+  }
+
+  require("telescope").load_extension("lines")
+  require('telescope').load_extension('fzf')
+
+  require("actions-preview").setup {
+    telescope = {
+      sorting_strategy = "ascending",
+      layout_strategy = "vertical",
+      layout_config = {
+        width = 0.8,
+        height = 0.6,
+        mirror = true,
+        prompt_position = "top",
+        preview_cutoff = 20,
+        preview_height = function(_, _, max_lines)
+          return max_lines - 15
+        end,
+      },
+    },
+  }
+
   local neogit = require('neogit')
   neogit.setup {
     kind = "split"
   }
+  function FormatFunction()
+      vim.lsp.buf.format({
+      async = true,
+      range = {
+          ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
+          ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
+      }
+      })
+      end
+
 
   require('gitsigns').setup()
-  
+
   vim.g.barbar_auto_setup = false -- disable auto-setup
   require'barbar'.setup {
       animation = false,
@@ -482,6 +551,7 @@ lua <<EOF
   -- Setup nvim-cmp.
   local cmp = require'cmp'
   local lspkind = require('lspkind')
+  require("fidget").setup {}
 
   cmp.setup({
     formatting = {
@@ -550,6 +620,18 @@ lua <<EOF
     })
   })
 
+  require'nvim-treesitter.configs'.setup {
+     -- A list of parser names, or "all" (the five listed parsers should always be installed)
+      ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "bash", "html", "css", "python", "javascript", "tsx" },
+      highlight = {
+          enable = true,
+      },
+      indent = {
+          enable = true
+      },
+  }
+  require'treesitter-context'.setup{ enable = true }
+
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -557,17 +639,60 @@ lua <<EOF
     capabilities = capabilities,
     settings = {
       pylsp = {
+        configurationSources = {"flake8"},
         plugins = {
           ruff = {
             enabled = true,
             lineLength = '120',
-            extendSelect = { "I" },
+            extendSelect = { "F", "E", "W"},
+            extendIgnore = { "I", "E501" },
+          },
+          flake8 = {
+            enabled = false
+          },
+          rope_autoimport = {
+              enabled = true
+          },
           }
-          }
-        }
+        },
       }
     }
   require('lspconfig')['tsserver'].setup{}
+
+  vim.api.nvim_create_user_command(
+    'LspInstallDependencies',
+    function(pkg)
+      -- remove the next three lines if ruff or other dependecies dont install
+      if pkg.name ~= "python-lsp-server" then
+        return
+      end
+      local venv = vim.fn.stdpath("data") .. "/mason/packages/python-lsp-server/venv"
+      local job = require("plenary.job")
+
+      job:new({
+          command = venv .. "/bin/pip",
+          args = {
+              "install",
+              "-U",
+              "--disable-pip-version-check",
+              -- "pylsp-mypy",
+              "python-lsp-ruff",
+              "rope",
+              "flake8",
+          },
+          cwd = venv,
+          env = { VIRTUAL_ENV = venv },
+          on_exit = function()
+              print("Finished installing pylsp modules.")
+          end,
+          on_start = function()
+              vim.notify("Installing pylsp modules...")
+          end,
+      }):start()
+    end,
+    {}
+  )
+
 
   require('mason').setup({
       ui = {
@@ -578,6 +703,7 @@ lua <<EOF
           }
       }
   })
+  require("mason-registry"):on("package:install:success", vim.cmd.LspInstallDependencies())
 
   require('mason-lspconfig').setup({
       -- A list of servers to automatically install if they're not already installed
@@ -602,6 +728,7 @@ lua <<EOF
         cwd = mason_package_path("python-lsp-server"),
     })
     :start()
+
 
   require("mason-nvim-dap").setup({
       ensure_installed = { "python", "js", "firefox"}
@@ -629,7 +756,7 @@ lua <<EOF
     dapui.close()
   end
 
-  vim.fn.sign_define('DapBreakpoint',{ text ='🟥', texthl ='', linehl ='', numhl =''})
+  vim.fn.sign_define('DapBreakpoint',{ text ='🛑', texthl ='', linehl ='', numhl =''})
   vim.fn.sign_define('DapStopped',{ text ='▶️', texthl ='', linehl ='', numhl =''})
 
   vim.keymap.set('n', '<F5>', require 'dap'.continue)

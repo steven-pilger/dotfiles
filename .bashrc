@@ -3,9 +3,38 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export PATH="$PATH:$HOME/.local/bin"
 
-if [ -n "$PS1" ]; then
-    # Check if 'fish' is available
-    if type fish >/dev/null 2>&1; then
-        exec fish
+# source: https://unix.stackexchange.com/a/360986
+case "$-" in
+    *i*)        ;;
+    *)   return ;;
+esac
+
+# Fish exclude machines, partial matches are also supported, e.g. slurm.
+exclude_machines=(
+    "slurm"
+    "hjort"
+)
+exclude_machines_list=$(IFS="|"; echo "${exclude_machines[*]}")
+
+# Check if libpcre2-32.so.0 is installed
+if ! ldconfig -p | grep -q libpcre2-32.so.0; then
+    echo "Error: libpcre2-32.so.0 is not installed."
+else
+    if uname -n | egrep -q $exclude_machines_list; then
+        # Do something if the machine is in the list
+        echo 'Machine in list of excluded machines for fish shell. Using fallback.'
+    else
+        if command -v fish > /dev/null 2>&1 ; then
+           exec fish
+        fi
     fi
 fi
+
+# if [ -n "$PS1" ]; then
+#     # Check if 'fish' is available
+#     if type fish >/dev/null 2>&1; then
+#         exec fish
+#     fi
+# fi
+
+
