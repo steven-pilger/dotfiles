@@ -178,7 +178,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Utilities
 Plug 'tpope/vim-eunuch' "eunuch.vim: Helpers for UNIX
-Plug 'mhinz/vim-signify'  " Show a diff using Vim its sign column.
+" Plug 'mhinz/vim-signify'  " Show a diff using Vim its sign column.
 " Plug 'junegunn/fzf'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
@@ -193,6 +193,7 @@ Plug 'tpope/vim-sleuth' "detect indentation
 Plug 'tpope/vim-fugitive'  "A Git wrapper so awesome, it should be illegal
 Plug 'tpope/vim-dispatch'  "A Git wrapper so awesome, it should be illegal
 Plug 'NeogitOrg/neogit'
+Plug 'lewis6991/gitsigns.nvim'
 Plug 'folke/trouble.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-lua/plenary.nvim'
@@ -253,13 +254,16 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 
 " Style
 Plug 'vim-airline/vim-airline' "lean & mean status/tabline for vim that's light as air
-Plug 'vim-airline/vim-airline-themes' " A collection of themes for vim-airline
-Plug 'dawikur/base16-vim-airline-themes'
-Plug 'edkolev/tmuxline.vim' "Simple tmux statusline generator with support for powerline symbols and statusline / airline / lightline integration
+"Plug 'vim-airline/vim-airline-themes' " A collection of themes for vim-airline
+"Plug 'dawikur/base16-vim-airline-themes'
+"Plug 'edkolev/tmuxline.vim' "Simple tmux statusline generator with support for powerline symbols and statusline / airline / lightline integration
 Plug 'chriskempson/base16-vim'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'ryanoasis/vim-devicons' "Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
 Plug 'luochen1990/rainbow' "Rainbow Parentheses Improved, shorter code, no level limit, smooth and fast, powerful configuration.
 Plug 'folke/zen-mode.nvim'
+Plug 'romgrk/barbar.nvim'
+Plug 'RRethy/vim-illuminate'
 
 call plug#end()
 
@@ -271,14 +275,14 @@ syntax on
 "Change theme depending on the time of day
 let hr = (strftime('%H'))
 if hr >= 17
-let g:airline_theme='base16_onedark'
-colorscheme base16-onedark
+let g:airline_theme = 'catppuccin'
+colorscheme catppuccin-frappe
 elseif hr >= 8
-let g:airline_theme='base16_one_light'
-colorscheme base16-one-light
+let g:airline_theme = 'catppuccin'
+colorscheme catppuccin-latte
 elseif hr >= 0
-let g:airline_theme='base16_onedark'
-colorscheme base16-onedark
+let g:airline_theme = 'catppuccin'
+colorscheme catppuccin-frappe
 endif
 
 highlight Normal ctermbg=NONE
@@ -329,49 +333,45 @@ let g:tex_flavor = 'latex'
 "  \--max-complexity 18 \
 "  \--select B,C,E,F,W,T4,B9'
 
-" GitGutter
-set updatetime=100
-
 " Vifm
 map <c-b> :EditVifm<CR>
 
 " Tmuxline
-let g:tmuxline_powerline_separators = 0
-let g:tmuxline_preset = {
-            \'a'    : '#S',
-            \'b'    : ['#(whoami)', "#(ifconfig en0 | grep 'inet ' | awk '{print $2}')", '#(curl ipinfo.io/ip)'],
-            \'win'  : ['#I', '#W'],
-            \'cwin' : ['#I', '#W', '#F'],
-            \'y'    : ['%R', '#(date +"%d-%m-%y")'],
-            \'z'    : '#H'}
-let g:tmuxline_theme = 'airline'
+" let g:tmuxline_powerline_separators = 0
+" let g:tmuxline_preset = {
+"            \'a'    : '#S',
+"            \'b'    : ['#(whoami)', "#(ifconfig en0 | grep 'inet ' | awk '{print $2}')", '#(curl ipinfo.io/ip)'],
+"            \'win'  : ['#I', '#W'],
+"            \'cwin' : ['#I', '#W', '#F'],
+"            \'y'    : ['%R', '#(date +"%d-%m-%y")'],
+"            \'z'    : '#H'}
+" let g:tmuxline_theme = 'airline'
 
 "Rainbow Parentheses
 let g:rainbow_active = 1
 
-" Airline / Tmuxline
+" airline
 let g:airline_section_c = ''
-" let g:airline_theme='onedark'
-" let g:airline_theme='onehalfdark'
-" let g:airline_theme='onehalflight'
-let g:airline#extensions#tmuxline#enabled = 0
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tab_count = 0
 let g:airline#extensions#tabline#formatter = 'short_path'
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-
 let g:airline#extensions#tagbar#enabled = 1
+
+" barbar
+nnoremap <silent>    <leader>1 <Cmd>BufferGoto 1<CR>
+nnoremap <silent>    <leader>2 <Cmd>BufferGoto 2<CR>
+nnoremap <silent>    <leader>3 <Cmd>BufferGoto 3<CR>
+nnoremap <silent>    <leader>4 <Cmd>BufferGoto 4<CR>
+nnoremap <silent>    <leader>5 <Cmd>BufferGoto 5<CR>
+nnoremap <silent>    <leader>6 <Cmd>BufferGoto 6<CR>
+nnoremap <silent>    <leader>7 <Cmd>BufferGoto 7<CR>
+nnoremap <silent>    <leader>8 <Cmd>BufferGoto 8<CR>
+nnoremap <silent>    <leader>9 <Cmd>BufferGoto 9<CR>
+nnoremap <silent>    <leader>0 <Cmd>BufferLast<CR>
+
 
 " fzf
 nnoremap <silent> <leader>f :FzfLua files<CR>
@@ -463,6 +463,21 @@ lua <<EOF
   neogit.setup {
     kind = "split"
   }
+
+  require('gitsigns').setup()
+  
+  vim.g.barbar_auto_setup = false -- disable auto-setup
+  require'barbar'.setup {
+      animation = false,
+  }
+
+  require("catppuccin").setup({
+    integrations = {
+        barbar = true,
+        mason = true,
+        lsp_trouble = true,
+    }
+  })
 
   -- Setup nvim-cmp.
   local cmp = require'cmp'
