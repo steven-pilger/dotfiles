@@ -270,7 +270,7 @@ Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'ryanoasis/vim-devicons' "Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
 Plug 'luochen1990/rainbow' "Rainbow Parentheses Improved, shorter code, no level limit, smooth and fast, powerful configuration.
 Plug 'folke/zen-mode.nvim'
-Plug 'romgrk/barbar.nvim'
+" Plug 'romgrk/barbar.nvim'
 Plug 'RRethy/vim-illuminate'
 
 call plug#end()
@@ -313,7 +313,7 @@ map <c-c> :bd<CR>
 
 " UltiSnips
 "" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
+" let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
 " let g:UltiSnipsExpandTrigger="<c-space>"
 "let g:UltiSnipsJumpForwardTrigger="<c-b>"
 "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -367,18 +367,26 @@ let g:airline#extensions#tabline#formatter = 'short_path'
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tagbar#enabled = 1
-
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
 " barbar
-nnoremap <silent>    <leader>1 <Cmd>BufferGoto 1<CR>
-nnoremap <silent>    <leader>2 <Cmd>BufferGoto 2<CR>
-nnoremap <silent>    <leader>3 <Cmd>BufferGoto 3<CR>
-nnoremap <silent>    <leader>4 <Cmd>BufferGoto 4<CR>
-nnoremap <silent>    <leader>5 <Cmd>BufferGoto 5<CR>
-nnoremap <silent>    <leader>6 <Cmd>BufferGoto 6<CR>
-nnoremap <silent>    <leader>7 <Cmd>BufferGoto 7<CR>
-nnoremap <silent>    <leader>8 <Cmd>BufferGoto 8<CR>
-nnoremap <silent>    <leader>9 <Cmd>BufferGoto 9<CR>
-nnoremap <silent>    <leader>0 <Cmd>BufferLast<CR>
+" nnoremap <silent>    <leader>1 <Cmd>BufferGoto 1<CR>
+" nnoremap <silent>    <leader>2 <Cmd>BufferGoto 2<CR>
+" nnoremap <silent>    <leader>3 <Cmd>BufferGoto 3<CR>
+" nnoremap <silent>    <leader>4 <Cmd>BufferGoto 4<CR>
+" nnoremap <silent>    <leader>5 <Cmd>BufferGoto 5<CR>
+" nnoremap <silent>    <leader>6 <Cmd>BufferGoto 6<CR>
+" nnoremap <silent>    <leader>7 <Cmd>BufferGoto 7<CR>
+" nnoremap <silent>    <leader>8 <Cmd>BufferGoto 8<CR>
+" nnoremap <silent>    <leader>9 <Cmd>BufferGoto 9<CR>
+" nnoremap <silent>    <leader>0 <Cmd>BufferLast<CR>
 
 
 " fzf + telescope
@@ -461,7 +469,7 @@ set completeopt=longest,menuone
 lua <<EOF
 
   -- Key Bindings
-  vim.keymap.set("", "<leader>ng", "<cmd>:Neogit<CR>", { remap = false })
+  vim.keymap.set("", "<leader>ng", "<cmd>:Neogit kind=replace<CR>", { remap = false })
   vim.keymap.set({'n', 'v'}, '<leader>F', vim.lsp.buf.format)
   vim.keymap.set({'n', 'v'}, 'gca', require("actions-preview").code_actions)
 
@@ -472,6 +480,16 @@ lua <<EOF
       min_width = 30
     }
   }
+
+  require('illuminate').configure({
+    delay  = 10,
+    providers = {
+        'treesitter',
+        'regex',
+    }
+    })
+  require('illuminate').pause()
+
   require('telescope').setup {
     extensions = {
       fzf = {
@@ -519,9 +537,8 @@ lua <<EOF
   }
 
   local neogit = require('neogit')
-  neogit.setup {
-    kind = "split"
-  }
+  neogit.setup { }
+
   function FormatFunction()
       vim.lsp.buf.format({
       async = true,
@@ -535,10 +552,10 @@ lua <<EOF
 
   require('gitsigns').setup()
 
-  vim.g.barbar_auto_setup = false -- disable auto-setup
-  require'barbar'.setup {
-      animation = false,
-  }
+  -- vim.g.barbar_auto_setup = false -- disable auto-setup
+  -- require'barbar'.setup {
+  --     animation = false,
+  -- }
 
   require("catppuccin").setup({
     integrations = {
@@ -651,7 +668,7 @@ lua <<EOF
             enabled = false
           },
           rope_autoimport = {
-              enabled = true
+              enabled = false
           },
           }
         },
