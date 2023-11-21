@@ -26,36 +26,28 @@ else
     exit 1
 fi
 
-lwd=$pwd
-
 # setting application themes appropriately
-cd ~/.config/kitty/
 if (($dark == 1)); then
 	echo 'Setting dark theme...'
 	# kitty
-	# cat onedark.conf > current_theme.conf
 	kitty +kitten themes --reload-in=all Catppuccin-Frappe
-	# fish
-	fish_config theme save "Catppuccin Frappe"
 	# tmux
-	cd ~
 	cat .tmuxline.dark.conf > .tmuxline.conf
+	tmux source ~/.tmux.conf
 elif (($dark == 0)); then
 	echo 'Setting light theme...'
 	# kitty
-	# cat onelight.conf > current_theme.conf
 	kitty +kitten themes --reload-in=all Catppuccin-Latte
 	# tmux
-	cd ~
 	cat .tmuxline.light.conf > .tmuxline.conf
+	tmux source ~/.tmux.conf
 else
 	echo 'Setting dark theme...'
 	# kitty
-	# cat onedark.conf > current_theme.conf
 	kitty +kitten themes --reload-in=all Catppuccin-Frappe
 	# tmux
-	cd ~
 	cat .tmuxline.dark.conf > .tmuxline.conf
+	tmux source ~/.tmux.conf
 fi
-
 cd $lwd
+

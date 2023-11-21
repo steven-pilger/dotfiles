@@ -201,9 +201,10 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'vifm/vifm.vim' "Vi based file-manager
 
 " Commenting
-Plug 'tyru/caw.vim' "Vim comment plugin: supported operator/non-operator mappings, repeatable by dot-command, 300+ filetypes
-Plug 'kana/vim-repeat' "Vim plugin: Enable to repeat last change by non built-in commands
-Plug 'shougo/context_filetype.vim' "Context filetype library for Vim script
+" Plug 'tyru/caw.vim' "Vim comment plugin: supported operator/non-operator mappings, repeatable by dot-command, 300+ filetypes
+" Plug 'kana/vim-repeat' "Vim plugin: Enable to repeat last change by non built-in commands
+" Plug 'shougo/context_filetype.vim' "Context filetype library for Vim script
+Plug 'numToStr/Comment.nvim'
 
 " Tex
 Plug 'lervag/vimtex' "A modern vim plugin for editing LaTeX files.
@@ -506,9 +507,7 @@ lua <<EOF
       layout_config = {
         width = 0.8,
         height = 0.6,
-        mirror = true,
-        prompt_position = "top",
-        preview_cutoff = 20,
+        mirror = true, prompt_position = "top", preview_cutoff = 20,
         preview_height = function(_, _, max_lines)
           return max_lines - 15
         end,
@@ -639,7 +638,7 @@ lua <<EOF
 
   require'nvim-treesitter.configs'.setup {
      -- A list of parser names, or "all" (the five listed parsers should always be installed)
-      ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "bash", "html", "css", "python", "javascript", "tsx" },
+      ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "bash", "html", "css", "python", "javascript", "tsx", "svelte"},
       highlight = {
           enable = true,
       },
@@ -648,6 +647,7 @@ lua <<EOF
       },
   }
   require'treesitter-context'.setup{ enable = true }
+  require('Comment').setup()
 
   -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -724,7 +724,7 @@ lua <<EOF
 
   require('mason-lspconfig').setup({
       -- A list of servers to automatically install if they're not already installed
-      ensure_installed = { 'pylsp', 'tsserver'},
+      ensure_installed = { 'pylsp', 'tsserver', 'svelte'},
   })
 
   local function mason_package_path(package)
