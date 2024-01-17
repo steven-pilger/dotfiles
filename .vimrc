@@ -240,6 +240,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'onsails/lspkind-nvim'
 Plug 'huggingface/llm.nvim'
+Plug 'gsuuon/model.nvim'
 
 " FZF / Code Actions / etc
 Plug 'aznhe21/actions-preview.nvim'
@@ -783,15 +784,151 @@ lua <<EOF
   vim.keymap.set('n', '<F12>', require 'dap'.step_out)
   vim.keymap.set('n', '<leader>b', require 'dap'.toggle_breakpoint)
 
-  -- require('llm').setup({
-  --   api_token = nil,
-  --   model = "http://localhost:11434/api/generate",
-  --   tokenizer = nil,
-  --   query_params = {
-  --     model = 'codellama'
-  --   }
-  -- })
+  local system_prompt = ' \
+      You are an expert software developer. \
+      You only respond with code snippets. \
+      The code snippets you write are concise and readable. \
+  '
+
+  local lmstudio_provider = require('model.providers.openai')
+  local lmstudio_options = {
+      url = 'http://127.0.0.1:1234/v1',
+      authorization = 'not-needed'
+  }
+
+  local lmstudio_prompt = {
+    provider = lmstudio_provider,
+    options = lmstudio_options,
+    builder = function(input)
+      return {
+        model = "stable-code-3b",
+        temperature = 0.2,
+        n_predict = -1,
+        top_k = 40,
+        repeat_penalty = 1.1,
+        min_p = 0.05,
+        top_p = 0.9,
+        max_tokens = 400,
+        messages = {
+            {
+                role = "system",
+                content = system_prompt,
+            },
+            { role = "user", content = input },
+        },
+      } 
+      end,
+  }
+
+  function prompt(callback, initial_content, title)
+      local bufnr = vim.api.nvim_create_buf(true, true)
+      vim.api.nvim_buf_set_option(bufnr, 'buftype', 'prompt')
+
+      vim.cmd(':b ' .. bufnr)
+
+      vim.api.nvim_set_option_value('winbar', title or 'Prompt', { scope = 'local' })
+
+      if initial_content ~= nil then
+        if type(initial_content) == "string" then
+          initial_content = vim.fn.split(initial_content, '\n')
+        end
+        vim.api.nvim_buf_set_text(bufnr, 0, 0, 0, 0, initial_content)
+      end
+
+      vim.fn.prompt_setcallback(bufnr, function(user_input)
+        local buf_content = table.concat(vim.api.nvim_buf_get_lines(bufnr, 0, -3, false), '\n')
+        local success, result = pcall(callback, user_input, buf_content)
+
+        if not success then
+          vim.notify(result, vim.log.levels.ERROR)
+        end
+
+        -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, false, true), "n", true)
+        vim.cmd(':bd! ' .. bufnr)
+      end)
+
+      vim.cmd.startinsert()
+  end
+
+  function user_prompt(callback, input, title)
+      return function(resolve)
+        prompt(function(user_input, buffer_content)
+          resolve(callback(user_input, buffer_content))
+        end, input, title)
+      end
+  end
+
+  local lmstudio_ask = {
+    provider = lmstudio_provider,
+    options = lmstudio_options,
+    mode = 'buffer',
+    builder = function(input)
+      local messages = {
+        {
+          role = 'user',
+          content = input
+        }
+      }
+      return user_prompt(
+        function(input)
+            if #input > 0 then
+              table.insert(messages, {
+                role = 'user',
+                content = input
+              })
+            end
+
+            return {
+              messages = messages
+            }
+          end,
+          input
+      )
+    end
+  }
+  local lmstudio_commit_message = {
+    provider = lmstudio_provider,
+    options = lmstudio_options,
+    mode = 'insert',
+    builder = function()
+      local git_diff = vim.fn.system {'git', 'diff', '--staged'}
+      return {
+        messages = {
+          {
+            role = 'system',
+            content = 'You are a helpful coding assistant that only returns a single commit message. Dont explain yourself. Write a short commit message according to the Conventional Commits specification for the following git diff: ```\n' .. git_diff .. '\n```'
+          }
+        }
+      }
+    end,
+  }
+  local function input_if_selection(input, context)
+    return context.selection and input or ''
+  end
+  local lmstudio_chat = {
+    provider = lmstudio_provider,
+    options = lmstudio_options,
+    create = input_if_selection,
+    system = system_prompt,
+    run = function(messages, config)
+      if config.system then
+        table.insert(messages, 1, {
+          role = 'system',
+          content = config.system
+        })
+      end
+      return { messages = messages }
+    end
+  }
+  require('model').setup({
+    prompts = {
+      lmstudio = lmstudio_prompt,
+      commit = lmstudio_commit_message,
+      ask = lmstudio_ask,
+    },
+    default_prompt = lmstudio_prompt,
+    chats = {lmstudio = lmstudio_chat},
+  })
 
 EOF
-
 
