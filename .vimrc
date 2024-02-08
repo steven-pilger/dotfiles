@@ -175,6 +175,7 @@ let g:loaded_perl_provider = 0
 " ========================================
 set rtp+=/usr/local/opt/fzf
 call plug#begin('~/.local/share/nvim/plugged')
+" call plug#begin('/vim/plugged')
 
 " Utilities
 Plug 'tpope/vim-eunuch' "eunuch.vim: Helpers for UNIX
@@ -199,6 +200,7 @@ Plug 'nvim-lua/plenary.nvim'
 " Plug 'vimwiki/vimwiki' "A Personal Wiki For Vim
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'vifm/vifm.vim' "Vi based file-manager
+Plug 'nyngwang/NeoZoom.lua'
 
 " Commenting
 " Plug 'tyru/caw.vim' "Vim comment plugin: supported operator/non-operator mappings, repeatable by dot-command, 300+ filetypes
@@ -231,7 +233,7 @@ Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'SirVer/ultisnips' "snippet engine
 Plug 'honza/vim-snippets' "snippet plugin
 Plug 'neovim/nvim-lspconfig'
-Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
+Plug 'j-hui/fidget.nvim'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -245,7 +247,7 @@ Plug 'gsuuon/model.nvim'
 " FZF / Code Actions / etc
 Plug 'aznhe21/actions-preview.nvim'
 " Plug 'MunifTanjim/nui.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.4' }
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'neanias/telescope-lines.nvim'
 Plug 'stevearc/aerial.nvim'
@@ -272,8 +274,8 @@ Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'ryanoasis/vim-devicons' "Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
 Plug 'luochen1990/rainbow' "Rainbow Parentheses Improved, shorter code, no level limit, smooth and fast, powerful configuration.
 Plug 'folke/zen-mode.nvim'
-" Plug 'romgrk/barbar.nvim'
 Plug 'RRethy/vim-illuminate'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 call plug#end()
 
@@ -297,13 +299,6 @@ endif
 
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
-" one dark
-" colorscheme onedark
-" highlight Normal ctermbg=none
-" highlight NonText ctermbg=none
-" highlight Comment cterm=italic gui=italic
-" autocmd ColorScheme * highlight Normal ctermbg=none
-" autocmd ColorScheme * highlight NonText ctermbg=none
 
 map <c-c> :bd<CR>
 
@@ -322,7 +317,7 @@ map <c-c> :bd<CR>
 
 " Python nvim environment
 let g:python_host_prog = '~/.pyenv/versions/2.7.16/bin/python'
-let g:python3_host_prog = '~/.pyenv/versions/3.8.12/bin/python'
+let g:python3_host_prog = '~/.pyenv/versions/3.10.13/bin/python'
 
 " pandoc
 let g:pandoc#filetypes#handled = ["markdown"]
@@ -361,14 +356,19 @@ map <c-b> :EditVifm<CR>
 let g:rainbow_active = 1
 
 " airline
+" hide filename
 let g:airline_section_c = ''
+" hide file encoding
+let g:airline_section_y = ''
+let g:airline_section_z = 'L: %l/%L C: %v'
 
+let g:airline_extensions = ['branch', 'tabline', 'nvimlsp']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tab_count = 0
 let g:airline#extensions#tabline#formatter = 'short_path'
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#nvimlsp#show_line_numbers = 0
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -378,17 +378,6 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
-" barbar
-" nnoremap <silent>    <leader>1 <Cmd>BufferGoto 1<CR>
-" nnoremap <silent>    <leader>2 <Cmd>BufferGoto 2<CR>
-" nnoremap <silent>    <leader>3 <Cmd>BufferGoto 3<CR>
-" nnoremap <silent>    <leader>4 <Cmd>BufferGoto 4<CR>
-" nnoremap <silent>    <leader>5 <Cmd>BufferGoto 5<CR>
-" nnoremap <silent>    <leader>6 <Cmd>BufferGoto 6<CR>
-" nnoremap <silent>    <leader>7 <Cmd>BufferGoto 7<CR>
-" nnoremap <silent>    <leader>8 <Cmd>BufferGoto 8<CR>
-" nnoremap <silent>    <leader>9 <Cmd>BufferGoto 9<CR>
-" nnoremap <silent>    <leader>0 <Cmd>BufferLast<CR>
 
 
 " fzf + telescope
@@ -483,6 +472,8 @@ lua <<EOF
     }
   }
 
+  require("ibl").setup{ scope = { enabled = false }}
+
   require('illuminate').configure({
     delay  = 10,
     providers = {
@@ -490,7 +481,6 @@ lua <<EOF
         'regex',
     }
     })
-  require('illuminate').pause()
 
   require('telescope').setup {
     extensions = {
@@ -537,7 +527,10 @@ lua <<EOF
   }
 
   local neogit = require('neogit')
-  neogit.setup { }
+  neogit.setup {
+      disable_hint = true,
+      disable_context_highlighting = true,
+  }
 
   function FormatFunction()
       vim.lsp.buf.format({
@@ -552,23 +545,23 @@ lua <<EOF
 
   require('gitsigns').setup()
 
-  -- vim.g.barbar_auto_setup = false -- disable auto-setup
-  -- require'barbar'.setup {
-  --     animation = false,
-  -- }
-
   require("catppuccin").setup({
     integrations = {
         barbar = true,
         mason = true,
         lsp_trouble = true,
+        dap = {
+          enabled = true,
+          enable_ui = true, -- enable nvim-dap-ui
+        }
     }
   })
 
   -- Setup nvim-cmp.
   local cmp = require'cmp'
+  -- symbols in the completion window
   local lspkind = require('lspkind')
-  require("fidget").setup {}
+  require("fidget").setup()
 
   cmp.setup({
     formatting = {
@@ -577,12 +570,12 @@ lua <<EOF
         with_text = false
       }),
     },
-    snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-      end,
-    },
+    -- snippet = {
+    --   -- REQUIRED - you must specify a snippet engine
+    --   expand = function(args)
+    --     vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+    --   end,
+    -- },
     mapping = {
       ['<C-p>'] = cmp.mapping.select_prev_item(),
       ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -615,7 +608,7 @@ lua <<EOF
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'ultisnips' }, -- For ultisnips users.
     }, {
       { name = 'buffer' },
     })
@@ -628,7 +621,7 @@ lua <<EOF
     }
   })
 
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  -- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
     sources = cmp.config.sources({
       { name = 'path' }
@@ -650,9 +643,8 @@ lua <<EOF
   require'treesitter-context'.setup{ enable = true }
   require('Comment').setup()
 
-  -- Setup lspconfig.
+  -- -- Setup lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
-  -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   require('lspconfig')['pylsp'].setup {
     capabilities = capabilities,
     settings = {
@@ -661,9 +653,10 @@ lua <<EOF
         plugins = {
           ruff = {
             enabled = true,
-            lineLength = '120',
-            extendSelect = { "F", "E", "W"},
-            extendIgnore = { "I", "E501" },
+            -- lineLength = '120',
+            -- format = { "I" },  -- Rules that are marked as fixable by ruff that should be fixed when running textDocument/formatting
+            -- extendSelect = { "F", "E", "W", "PL", "N", "COM", "TRY" },
+            -- extendIgnore = { "I", "E501" },
           },
           flake8 = {
             enabled = false
@@ -753,19 +746,37 @@ lua <<EOF
   })
 
   local dap, dapui = require("dap"), require("dapui")
-  require('dap-python').setup('$HOME/.pyenv/versions/3.8.12/bin/python')
+  require('dap-python').setup('$HOME/.pyenv/versions/3.10.13/bin/python')
   require("dapui").setup()
   require('dap.ext.vscode').load_launchjs()
 
   vim.keymap.set('n', '<leader>d', function()
+      vim.cmd 'colorscheme catppuccin'
       return require('dapui').toggle({reset=true})
   end)
   vim.keymap.set('n', '<C-w>z', function()
       return require('zen-mode').toggle({window={width=0.95}})
   end)
 
+  require('neo-zoom').setup({
+      winopts = {
+        offset = {
+          -- NOTE: omit `top`/`left` to center the floating window vertically/horizontally.
+          -- top = 0,
+          -- left = 0.17,
+          width = 0.8,
+          height = 0.75,
+        },
+        -- NOTE: check :help nvim_open_win() for possible border values.
+        border = 'thicc', -- this is a preset, try it :)
+      },
+  })
+  vim.keymap.set('n', '<C-w>o', function () vim.cmd('NeoZoomToggle') end, { silent = true, nowait = true })
+  vim.keymap.set('n', '<C-w><C-o>', function () vim.cmd('NeoZoomToggle') end, { silent = true, nowait = true })
+
   dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open({reset=true})
+    -- vim.cmd 'colorscheme catppuccin'
   end
   dap.listeners.before.event_terminated["dapui_config"] = function()
     dapui.close()
@@ -774,8 +785,9 @@ lua <<EOF
     dapui.close()
   end
 
-  vim.fn.sign_define('DapBreakpoint',{ text ='🛑', texthl ='', linehl ='', numhl =''})
-  vim.fn.sign_define('DapStopped',{ text ='▶️', texthl ='', linehl ='', numhl =''})
+  vim.fn.sign_define('DapBreakpointCondition', { text ='⬤ ', texthl ='', linehl ='', numhl =''})
+  vim.fn.sign_define('DapBreakpoint', { text ='⬤ ', texthl ='', linehl ='', numhl =''})
+  vim.fn.sign_define('DapStopped', { text ='⮕ ', texthl ='', linehl ='', numhl =''})
 
   vim.keymap.set('n', '<F5>', require 'dap'.continue)
   vim.keymap.set('n', '<F6>', require 'dap'.restart)
@@ -816,7 +828,7 @@ lua <<EOF
             },
             { role = "user", content = input },
         },
-      } 
+      }
       end,
   }
 
