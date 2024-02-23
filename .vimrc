@@ -450,8 +450,6 @@ nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> ge    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
-nnoremap <silent> ge    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
-" nnoremap <silent> gca    <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 
 
@@ -658,6 +656,9 @@ lua <<EOF
             -- extendSelect = { "F", "E", "W", "PL", "N", "COM", "TRY" },
             -- extendIgnore = { "I", "E501" },
           },
+          pylsp_mypy = {
+            enabled = false
+          },
           flake8 = {
             enabled = false
           },
@@ -677,7 +678,8 @@ lua <<EOF
       if pkg.name ~= "python-lsp-server" then
         return
       end
-      local venv = vim.fn.stdpath("data") .. "/mason/packages/python-lsp-server/venv"
+      -- local venv = vim.fn.stdpath("data") .. "/mason/packages/python-lsp-server/venv"
+      local venv = "/Users/stpi/.pyenv/versions/3.10.13"
       local job = require("plenary.job")
 
       job:new({
@@ -686,7 +688,7 @@ lua <<EOF
               "install",
               "-U",
               "--disable-pip-version-check",
-              -- "pylsp-mypy",
+              "pylsp-mypy",
               "python-lsp-ruff",
               "rope",
               "flake8",
@@ -730,7 +732,7 @@ lua <<EOF
   -- this command might need to be changed such that the pip from the venv is used
   -- e.g. ./venv/bin/pip
   local command = "pip"
-  local args = { "install", "pylsp-rope", "python-lsp-ruff", "pyls-isort", "python-lsp-black" }
+  local args = { "install", "pylsp-rope", "python-lsp-ruff", "pylsp-mypy", "pyls-isort" }
 
   require("plenary.job")
     :new({

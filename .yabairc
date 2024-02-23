@@ -74,6 +74,7 @@ yabai -m rule --add app=Outlook space=1 manage=on
 
 yabai -m rule --add app='Microsoft Teams' space=1
 yabai -m rule --add app=Fork space=1 manage=off
+yabai -m rule --add app=TextEdit manage=off
 yabai -m rule --add app="Cisco AnyConnect Secure Mobility Client" manage=off
 yabai -m rule --add app="^Digital Colou?r Meter$" sticky=on manage=off
 

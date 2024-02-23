@@ -38,6 +38,15 @@ if command -q starship
   starship init fish --print-full-init | source
 end
 
+if command -q zoxide
+  zoxide init --cmd cd fish | source
+end
+
+if command -q eza
+  alias ls='eza'
+  alias ll='eza -l'
+end
+
 # NVM
 set NVM_DIR $HOME/.nvm
 # load_nvm > /dev/stderr

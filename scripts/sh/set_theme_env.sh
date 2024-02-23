@@ -11,6 +11,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
         echo "macOS is in Light mode"
         dark=0
     fi
+    kitty=/opt/homebrew/bin/kitty
+    tmux=/opt/homebrew/bin/tmux
 elif [[ "$(uname)" == "Linux" ]]; then
     # Ubuntu/Linux
     theme=$(gsettings get org.gnome.desktop.interface gtk-theme)
@@ -21,6 +23,8 @@ elif [[ "$(uname)" == "Linux" ]]; then
         echo "Ubuntu/Linux is in Light mode"
         dark=0
     fi
+    kitty=kitty
+    tmux=tmux
 else
     echo "Unsupported operating system"
     exit 1
@@ -30,24 +34,24 @@ fi
 if (($dark == 1)); then
 	echo 'Setting dark theme...'
 	# kitty
-	kitty +kitten themes --reload-in=all Catppuccin-Frappe
+	$kitty +kitten themes --reload-in=all Catppuccin-Frappe
 	# tmux
 	cat .tmuxline.dark.conf > .tmuxline.conf
-	tmux source ~/.tmux.conf
+	$tmux source ~/.tmux.conf
 elif (($dark == 0)); then
 	echo 'Setting light theme...'
 	# kitty
-	kitty +kitten themes --reload-in=all Catppuccin-Latte
+	$kitty +kitten themes --reload-in=all Catppuccin-Latte
 	# tmux
 	cat .tmuxline.light.conf > .tmuxline.conf
-	tmux source ~/.tmux.conf
+	$tmux source ~/.tmux.conf
 else
 	echo 'Setting dark theme...'
 	# kitty
-	kitty +kitten themes --reload-in=all Catppuccin-Frappe
+	$kitty +kitten themes --reload-in=all Catppuccin-Frappe
 	# tmux
 	cat .tmuxline.dark.conf > .tmuxline.conf
-	tmux source ~/.tmux.conf
+	$tmux source ~/.tmux.conf
 fi
 cd $lwd
 
