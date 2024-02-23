@@ -12,7 +12,8 @@ esac
 # Fish exclude machines, partial matches are also supported, e.g. slurm.
 exclude_machines=(
     "slurm"
-    "hjort"
+    "green-ext"
+    #"hjort"
 )
 exclude_machines_list=$(IFS="|"; echo "${exclude_machines[*]}")
 
