@@ -21,7 +21,7 @@ set VISUAL nvim
 set EDITOR $VISUAL
 
 # VI Mode
-# set -g fish_key_bindings fish_vi_key_bindings
+set -g fish_key_bindings fish_vi_key_bindings
 bind -M insert \cc kill-whole-line repaint
 bind \cx\ce edit_command_buffer
 
