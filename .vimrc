@@ -452,15 +452,25 @@ nnoremap <silent> gD    <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> ge    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 
-
 set completeopt=longest,menuone
 
 lua <<EOF
 
   -- Key Bindings
   vim.keymap.set("", "<leader>ng", "<cmd>:Neogit kind=replace<CR>", { remap = false })
-  vim.keymap.set({'n', 'v'}, '<leader>F', vim.lsp.buf.format)
-  vim.keymap.set({'n', 'v'}, 'gca', require("actions-preview").code_actions)
+
+  vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    callback = function(ev)
+      local opts = { buffer = ev.buf }
+      vim.keymap.set({'n', 'v'}, 'gca', require("actions-preview").code_actions)
+      vim.keymap.set('n', '<leader>F', function()
+        vim.lsp.buf.format { 
+          async = true,
+        }
+      end, opts)
+    end,
+  })
 
   require('aerial').setup {
     layout = {
@@ -529,17 +539,6 @@ lua <<EOF
       disable_hint = true,
       disable_context_highlighting = true,
   }
-
-  function FormatFunction()
-      vim.lsp.buf.format({
-      async = true,
-      range = {
-          ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
-          ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
-      }
-      })
-      end
-
 
   require('gitsigns').setup()
 
@@ -910,7 +909,15 @@ lua <<EOF
         messages = {
           {
             role = 'system',
-            content = 'You are a helpful coding assistant that only returns a single commit message. Dont explain yourself. Write a short commit message according to the Conventional Commits specification for the following git diff: ```\n' .. git_diff .. '\n```'
+            content = '\
+              You are a helpful coding assistant that only returns a single commit message.\
+              Write a short commit message according to the Conventional Commits specification\
+              Do not explain yourself.\
+              Do not include the scope, body or footter.\
+              Here is an example structure of your response: "<type>: <description>"\
+              Use the following git diff:\
+              ```\n' .. git_diff .. '```\
+            '
           }
         }
       }
