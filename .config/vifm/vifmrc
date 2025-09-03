@@ -69,7 +69,7 @@ colorscheme snowwhite
 " icons" for files
 
 let $VIFMRC_HAS_RICH_FONT = 1
-if $VIFMRC_HAS_RICH_FONT
+if $VIFMRC_HAS_RICH_FONT != ''
     " file types
     set classify=' :dir:/, :exe:, :reg:, :link:'
     " various file names

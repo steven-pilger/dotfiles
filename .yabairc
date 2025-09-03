@@ -47,6 +47,7 @@ yabai -m rule --add label="Software Update" title="Software Update" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 
 yabai -m rule --add app=Preview manage=off
+yabai -m rule --add app=LuLu manage=off
 yabai -m rule --add app=Messages manage=off
 yabai -m rule --add app="1Password" manage=off
 yabai -m rule --add app="LastPass" manage=off
@@ -58,22 +59,22 @@ yabai -m rule --add app=Dash manage=off
 yabai -m rule --add app=Tot manage=off
 yabai -m rule --add app=Chrome manage=off
 yabai -m rule --add app=Spotify manage=off
-yabai -m rule --add app=kitty  space=2
+yabai -m rule --add app=kitty  
 yabai -m rule --add app=RStudio 
-yabai -m rule --add app=Firefox space=2
-yabai -m rule --add app=Mail space=1
-yabai -m rule --add app=Slack space=1
-yabai -m rule --add app=Things space=2
-yabai -m rule --add app=Calendar space=1 manage=off
+yabai -m rule --add app=Firefox 
+yabai -m rule --add app=Mail 
+yabai -m rule --add app=Slack 
+yabai -m rule --add app=Things manage=off
+yabai -m rule --add app=Calendar  manage=off
 yabai -m rule --add app=Gemini manage=off
-yabai -m rule --add app=Outlook space=1 manage=on
+yabai -m rule --add app=Outlook  manage=on
 # yabai -m rule --add app=Outlook title="^\d+ Reminders?" manage=off sticky=on
 
 # This matches outlook windows which titles have an email address in the end
 # yabai -m rule --add app=Outlook title="stpi@novozymes.com$" manage=off sticky=off
 
-yabai -m rule --add app='Microsoft Teams' space=1
-yabai -m rule --add app=Fork space=1 manage=off
+yabai -m rule --add app='Microsoft Teams' 
+yabai -m rule --add app=Fork  manage=off
 yabai -m rule --add app=TextEdit manage=off
 yabai -m rule --add app="Cisco AnyConnect Secure Mobility Client" manage=off
 yabai -m rule --add app="^Digital Colou?r Meter$" sticky=on manage=off

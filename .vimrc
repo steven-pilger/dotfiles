@@ -1,5 +1,3 @@
-" INIT
-" ========================================
 set shell=/bin/sh
 set nocompatible
 filetype off
@@ -169,6 +167,9 @@ nnoremap <silent> <leader>/ :noh<CR> " remove search highlightin until next sear
 
 let g:loaded_perl_provider = 0
 
+" llama.vim
+let g:llama_config = {'show_info': 0}
+
 
 " ========================================
 " VIM PLUGIN CONFIGURATION
@@ -183,11 +184,12 @@ Plug 'tpope/vim-eunuch' "eunuch.vim: Helpers for UNIX
 " Plug 'junegunn/fzf'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
-Plug 'xolox/vim-misc' "Miscellaneous auto-load Vim scripts
-Plug 'junegunn/goyo.vim' "Distraction-free writing in Vim.
+" Plug 'xolox/vim-misc' "Miscellaneous auto-load Vim scripts
+" Plug 'junegunn/goyo.vim' "Distraction-free writing in Vim.
 Plug 'christoomey/vim-tmux-navigator' "Seamless navigation between tmux panes and vim splits
 Plug 'tpope/vim-surround' "quoting/parenthesizing made simple
 Plug 'jiangmiao/auto-pairs' "Insert or delete brackets, parens, quotes in pair
+" Plug 'cohama/lexima.vim'
 Plug 'andymass/matchup.vim' "highlight, navigate, and operate on sets of matching text
 Plug 'tpope/vim-sleuth' "detect indentation
 Plug 'tpope/vim-fugitive'  "A Git wrapper so awesome, it should be illegal
@@ -243,12 +245,14 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'onsails/lspkind-nvim'
 Plug 'huggingface/llm.nvim'
 Plug 'gsuuon/model.nvim'
+Plug 'ggml-org/llama.vim'
 
 " FZF / Code Actions / etc
 Plug 'aznhe21/actions-preview.nvim'
 " Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-telescope/telescope-live-grep-args.nvim'
 Plug 'neanias/telescope-lines.nvim'
 Plug 'stevearc/aerial.nvim'
 
@@ -257,6 +261,9 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'mfussenegger/nvim-dap-python'
 Plug 'jay-babu/mason-nvim-dap.nvim'
 Plug 'rcarriga/nvim-dap-ui'
+Plug 'nvim-neotest/nvim-nio'
+Plug 'vim-test/vim-test'
+Plug 'preservim/vimux'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-context'
 
@@ -270,7 +277,7 @@ Plug 'vim-airline/vim-airline' "lean & mean status/tabline for vim that's light 
 "Plug 'dawikur/base16-vim-airline-themes'
 "Plug 'edkolev/tmuxline.vim' "Simple tmux statusline generator with support for powerline symbols and statusline / airline / lightline integration
 Plug 'chriskempson/base16-vim'
-Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'catppuccin/nvim', { 'as': 'catppuccin', 'do': 'git config fetch.pruneTags false' }
 Plug 'ryanoasis/vim-devicons' "Adds file type glyphs/icons to popular Vim plugins: NERDTree, vim-airline, Powerline, Unite, vim-startify and more
 Plug 'luochen1990/rainbow' "Rainbow Parentheses Improved, shorter code, no level limit, smooth and fast, powerful configuration.
 Plug 'folke/zen-mode.nvim'
@@ -306,7 +313,14 @@ map <c-c> :bd<CR>
 " PLUGIN CONFIGURATION
 " ========================================
 "
-"
+" vim-test
+let test#strategy = "vimux"
+let g:VimuxRunnerName = "vimuxout"
+let g:VimuxOrientation = "v"
+
+nmap <silent> <leader>tt :TestNearest<CR>
+nmap <silent> <leader>tF :TestFile<CR>
+nmap <silent> <leader>tC :TestClass<CR>
 
 " UltiSnips
 "" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -388,9 +402,10 @@ nnoremap <silent> <leader>l :Telescope lines<CR>
 " nnoremap <silent> <leader>o :BTags<CR>
 " nnoremap <silent> <leader>t :FzfLua tags<Ct>
 " nnoremap <silent> <leader>? :History<CR>
-nnoremap <silent> <leader>s :Telescope live_grep<CR>
+nnoremap <silent> <leader>s :Telescope live_grep_args<CR>
 " nnoremap <silent> <leader>F     :Telescope lsp_document_symbols symbols=function,class<CR>
 nnoremap <silent> <leader>A     :AerialToggle left<CR>
+nnoremap <silent> <leader>xx     :Trouble diagnostics toggle<CR>
 
 let g:fzf_tags_command = 'ctags -Ra -f tags .'
 set grepprg=rg\ --vimgrep
@@ -459,6 +474,11 @@ lua <<EOF
   -- Key Bindings
   vim.keymap.set("", "<leader>ng", "<cmd>:Neogit kind=replace<CR>", { remap = false })
 
+  vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+    pattern = "*.nf",
+    command = "set filetype=groovy"
+  })
+
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
@@ -471,6 +491,32 @@ lua <<EOF
       end, opts)
     end,
   })
+
+  -- Detect floating windows on BufEnter
+  vim.api.nvim_create_autocmd("BufEnter", {
+      group = augroup,
+      pattern = "*",
+      callback = function()
+          -- Check if the buffer is in a floating window
+          local buftype = vim.bo.buftype
+          local is_floating = vim.api.nvim_win_get_config(0).relative ~= ""
+          if is_floating or buftype == "prompt" or buftype == "nofile" or buftype == "popup" then
+              -- Disable completion (affects plugins like llama.vim if they use completion)
+              vim.opt_local.completeopt = { "menu", "menuone", "noselect" }
+              vim.opt_local.complete = "" -- Disable completion sources
+              vim.cmd("LlamaDisable")
+
+              -- Hypothetical: Disable specific plugins using buffer-local variables
+              -- Optionally, remove plugin-specific keymaps (e.g., if plugin uses <Tab>)
+          else
+              -- Restore settings for non-floating windows
+              vim.opt_local.completeopt = { "menu", "menuone", "noselect", "noinsert" }
+              vim.opt_local.complete = ".,w,b,u,t,i"
+            vim.cmd("LlamaEnable")
+          end
+      end,
+  })
+
 
   require('aerial').setup {
     layout = {
@@ -490,6 +536,9 @@ lua <<EOF
     }
     })
 
+  local actions = require("telescope.actions")
+  local lga_actions = require("telescope-live-grep-args.actions")
+
   require('telescope').setup {
     extensions = {
       fzf = {
@@ -498,14 +547,30 @@ lua <<EOF
         override_file_sorter = true,     -- override the file sorter
         case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
                                          -- the default case_mode is "smart_case"
-      }
+      },
+      live_grep_args = {
+        auto_quoting = true, -- enable/disable auto-quoting
+        mappings = { -- extend mappings
+          i = {
+            ["<C-k>"] = lga_actions.quote_prompt(),
+            -- ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+            -- freeze the current list and start a fuzzy search in the frozen list
+            ["<C-r>"] = actions.to_fuzzy_refine,
+          },
+        },
+      },
     },
     defaults = {
+      mappings = {
+        i = {
+          ["<C-q>"] = actions.send_selected_to_qflist,
+        },
+      },
       sorting_strategy = "ascending",
       layout_strategy = "vertical",
       layout_config = {
         width = 0.8,
-        height = 0.6,
+        height = 0.8,
         mirror = true, prompt_position = "top", preview_cutoff = 20,
         preview_height = function(_, _, max_lines)
           return max_lines - 15
@@ -515,7 +580,8 @@ lua <<EOF
   }
 
   require("telescope").load_extension("lines")
-  require('telescope').load_extension('fzf')
+  require("telescope").load_extension("fzf")
+  require("telescope").load_extension("live_grep_args")
 
   require("actions-preview").setup {
     telescope = {
@@ -541,6 +607,20 @@ lua <<EOF
   }
 
   require('gitsigns').setup()
+  require('trouble').setup({
+    modes = {
+      diagnostics_split_in_buffer = {
+        mode = "diagnostics",
+        preview = {
+          type = "split",
+          relative = "win",
+          position = "right",
+          size = 0.3,
+        },
+        filter = { buf = 0 }, -- filter diagnostics to the current buffer
+      },
+    }
+  })
 
   require("catppuccin").setup({
     integrations = {
@@ -668,7 +748,7 @@ lua <<EOF
         },
       }
     }
-  require('lspconfig')['tsserver'].setup{}
+  require('lspconfig')['ts_ls'].setup{}
 
   vim.api.nvim_create_user_command(
     'LspInstallDependencies',
@@ -677,8 +757,8 @@ lua <<EOF
       if pkg.name ~= "python-lsp-server" then
         return
       end
-      -- local venv = vim.fn.stdpath("data") .. "/mason/packages/python-lsp-server/venv"
-      local venv = "/Users/stpi/.pyenv/versions/3.10.13"
+      local venv = vim.fn.stdpath("data") .. "/mason/packages/python-lsp-server/venv"
+      -- local venv = "/Users/stpi/.pyenv/versions/3.10.13"
       local job = require("plenary.job")
 
       job:new({
@@ -719,7 +799,7 @@ lua <<EOF
 
   require('mason-lspconfig').setup({
       -- A list of servers to automatically install if they're not already installed
-      ensure_installed = { 'pylsp', 'tsserver', 'svelte'},
+      ensure_installed = { 'pylsp', 'ts_ls', 'svelte'},
   })
 
   local function mason_package_path(package)
@@ -899,6 +979,7 @@ lua <<EOF
       )
     end
   }
+
   local lmstudio_commit_message = {
     provider = lmstudio_provider,
     options = lmstudio_options,
@@ -941,14 +1022,72 @@ lua <<EOF
       return { messages = messages }
     end
   }
+
+  local ollama_provider = require('model.providers.ollama')
+
+  local ollama_chat = {
+    provider = ollama_provider,
+    create = input_if_selection,
+    params = {
+      model = 'codegemma:7b'
+    },
+    system = system_prompt,
+    run = function(messages, config)
+      if config.system then
+        table.insert(messages, 1, {
+          role = 'system',
+          content = config.system
+        })
+      end
+      return { messages = messages }
+    end
+  }
+
+  local ollama_ask = {
+    provider = ollama_provider,
+    params = {
+      model = 'codegemma:7b'
+    },
+    mode = 'buffer',
+    system = system_prompt,
+    builder = function(input)
+      local messages = {
+        {
+          role = 'user',
+          content = input
+        }
+      }
+      return user_prompt(
+        function(input)
+            if #input > 0 then
+              table.insert(messages, {
+                role = 'user',
+                content = input
+              })
+            end
+
+            return {
+              messages = messages
+            }
+          end,
+          input
+      )
+    end
+  }
+
+
   require('model').setup({
     prompts = {
       lmstudio = lmstudio_prompt,
       commit = lmstudio_commit_message,
       ask = lmstudio_ask,
+      oask = ollama_ask,
     },
     default_prompt = lmstudio_prompt,
-    chats = {lmstudio = lmstudio_chat},
+    chats = {
+        lmstudio = lmstudio_chat,
+        ollama = ollama_chat,
+    },
   })
 
 EOF

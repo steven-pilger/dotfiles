@@ -13,6 +13,7 @@ esac
 exclude_machines=(
     "slurm"
     "green-ext"
+    "hugorm"
     #"hjort"
 )
 exclude_machines_list=$(IFS="|"; echo "${exclude_machines[*]}")
@@ -58,3 +59,5 @@ esac
 #     fi
 # fi
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

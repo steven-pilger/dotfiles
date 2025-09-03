@@ -3,7 +3,7 @@
 import subprocess
 
 def get_brew_apps():
-    cmd = ['brew', 'cask', 'list']
+    cmd = ['brew', 'list', '--cask']
     prc = subprocess.run(cmd, stdout=subprocess.PIPE)
     
     return prc.stdout.decode('UTF-8').splitlines()

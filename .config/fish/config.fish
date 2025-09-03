@@ -49,5 +49,3 @@ end
 
 # NVM
 set NVM_DIR $HOME/.nvm
-# load_nvm > /dev/stderr
-
