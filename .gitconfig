@@ -1,0 +1,42 @@
+# This is Git's per-user configuration file.
+[user]
+    name = STPI (Steven Pilger)
+    email = stpi@novozymes.com
+[pull]
+    rebase = true
+[rebase]
+    autostash = true
+[branch]
+    autosetuprebase = always
+
+[safe]
+	directory = /net/greennfs01.sdma.nzcorp.net/z/green/bbd
+	directory = /z/build-focal/common_python_environment
+	directory = /z/build-jammy/common_python_environment
+	directory = /z/build-bionic/common_python_environment
+	directory = /z/build-noble/common_python_environment
+	directory = /home/appuser/ngs-hub
+	directory = /net/ged.nzcorp.net/z/home/mnis/projects/DocsGPT-ingestion
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[merge]
+	conflictStyle = zdiff3
+[commit]
+	verbose = true
+[diff]
+	algorithm = histogram
+	colorMoved = default
+	colorMovedWS = allow-indentation-change
+[log]
+	date = iso
+[fetch]
+	prune = true
+	pruneTags = true
+[push]
+	followTags = true
+	autoSetupRemote = true
+[init]
+	defaultBranch = main

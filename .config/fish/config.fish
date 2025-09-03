@@ -49,3 +49,8 @@ end
 
 # NVM
 set NVM_DIR $HOME/.nvm
+# load_nvm > /dev/stderr
+
+set PIP_TRUSTED_HOST nexus.sdma.nzcorp.net
+set PIP_EXTRA_INDEX_URL https://nexus.sdma.nzcorp.net/repository/pypi-proxy/simple
+set PIP_INDEX_URL https://nexus.sdma.nzcorp.net/repository/pypi-hosted-wrp/simple
