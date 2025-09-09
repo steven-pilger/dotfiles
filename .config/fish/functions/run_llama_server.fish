@@ -5,10 +5,8 @@ function run_llama_server
         --prio 3 \
         --mlock \
         --gpu-layers 99 \
-        --flash-attn \
         --batch-size 1024 \
         --ubatch-size 1024 \
-        --defrag-thold 0.1 \
         --ctx-size 0 \
         --cache-reuse 256
 end

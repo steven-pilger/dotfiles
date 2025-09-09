@@ -232,8 +232,8 @@ Plug 'ap/vim-css-color' " A very fast, multi-syntax context-sensitive color name
 " Completion / Snippets
 Plug 'williamboman/mason.nvim' "lsp management
 Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'SirVer/ultisnips' "snippet engine
-Plug 'honza/vim-snippets' "snippet plugin
+"Plug 'SirVer/ultisnips' "snippet engine
+"Plug 'honza/vim-snippets' "snippet plugin
 Plug 'neovim/nvim-lspconfig'
 Plug 'j-hui/fidget.nvim'
 Plug 'hrsh7th/nvim-cmp'
@@ -241,7 +241,7 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+"Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'onsails/lspkind-nvim'
 Plug 'huggingface/llm.nvim'
 Plug 'gsuuon/model.nvim'

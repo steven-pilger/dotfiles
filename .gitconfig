@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
-    name = STPI (Steven Pilger)
-    email = stpi@novozymes.com
+	name = STPI (Steven Pilger)
+	email = stpi@novonesis.com
 [safe]
     directory = /opt/homebrew
     directory = /net/greennfs01.sdma.nzcorp.net/z/green/bbd
