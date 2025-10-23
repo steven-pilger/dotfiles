@@ -5,6 +5,7 @@
 
 function run_aider_azure
     clear &&
+    tmux list-panes -a -F "#{pane_title}" | grep -q "aider" || tmux select-pane -T "aider" &&
     # echo -e "/run git diff HEAD~3" |\
     AZURE_API_KEY=(op read op://p5lerwkxuapm33wvmrmeyxuzya/xzcnwxuv7eqrwed5hv2xwxdcvu/azure_api_key) \
     AZURE_API_BASE=(op read op://p5lerwkxuapm33wvmrmeyxuzya/xzcnwxuv7eqrwed5hv2xwxdcvu/azure_api_base) \

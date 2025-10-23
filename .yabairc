@@ -47,6 +47,7 @@ yabai -m rule --add label="Software Update" title="Software Update" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 
 yabai -m rule --add app=Preview manage=off
+yabai -m rule --add app=Infuse manage=off
 yabai -m rule --add app=LuLu manage=off
 yabai -m rule --add app=Messages manage=off
 yabai -m rule --add app="1Password" manage=off
@@ -74,7 +75,8 @@ yabai -m rule --add app=Outlook  manage=on
 # yabai -m rule --add app=Outlook title="stpi@novozymes.com$" manage=off sticky=off
 
 yabai -m rule --add app='Microsoft Teams' 
-yabai -m rule --add app=Fork  manage=off
+yabai -m rule --add app=Fork manage=off
+yabai -m rule --add app=Moonlight manage=off
 yabai -m rule --add app=TextEdit manage=off
 yabai -m rule --add app="Cisco AnyConnect Secure Mobility Client" manage=off
 yabai -m rule --add app="^Digital Colou?r Meter$" sticky=on manage=off
